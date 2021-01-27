@@ -166,30 +166,19 @@
     const valueFrom = parseInt(elemValue.innerText, 16);
     let valueTo = 0;
 
-    if(incDec === 'inc') {
-      valueTo = valueFrom + 1;
-    }
-    else {
-      valueTo = valueFrom - 1;
-    }
+    if(incDec === 'inc') { valueTo = valueFrom + 1; }
+    else { valueTo = valueFrom - 1; }
 
-    if (valueTo > 15) {
-      valueTo = 0x0;
-    }
-    if(valueTo < 0) {
-      valueTo = 0xffff;
-    }
+    if (valueTo > 15) { valueTo = 0x0; }
+    if(valueTo < 0) { valueTo = 0xffff; }
 
     const valueToInBinary = ('0000' + valueTo.toString(2)).slice(-4);
 
     valueToInBinary.split('').forEach((value, ix) => {
       const elemSwitch = seriesElemSwitch[ix];
-      if(value === '1') {
-        elemSwitch.classList.add('on');
-      }
-      else {
-        elemSwitch.classList.remove('on');
-      }
+
+      if(value === '1') { elemSwitch.classList.add('on'); }
+      else { elemSwitch.classList.remove('on'); }
 
       applyHex(elemSwitch);
       applyColor(elemColorPainted);
@@ -235,9 +224,14 @@
     });
 
     const codeHex =  parseInt(seriesOnOff.join(''), 2).toString(16);
-
     elemCodeHex.innerText = codeHex;
 
+    applyColorToPrimeColorBar(elemCtrl);
+
+    return codeHex;
+  }
+
+  function applyColorToPrimeColorBar(elemCtrl) {
     const elemContainerPrimeColor = elemCtrl.closest('.containerPrimeColor');
     const codePrimeColor = (function() {
       const seriesCode = [];
@@ -258,8 +252,6 @@
     if(elemContainerPrimeColor.classList.contains('containerPrimeColorB')) {
       elemContainerPrimeColor.style.borderBottomColor = '#' + '0000' + codePrimeColor;
     }
-
-    return codeHex;
   }
 
 })(void(0));
