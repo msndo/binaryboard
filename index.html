@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head>
+<meta charset="utf-8">
+<title>カラーコードのデモ</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+</head>
+
+<body class="appDemoHexColorCode">
+<header class="containerTitlePage">
+<h1 class="titlePage">カラーコードと二進数</h1>
+</header>
+
+
+<div class="demoHexColorCode">
+<div class="crusterSwitch">
+
+<div class="containerPrimeColor containerPrimeColorR">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+<!-- /containerPrimeColorR --></div>
+
+<div class="containerPrimeColor containerPrimeColorG">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+<!-- /containerPrimeColorG --></div>
+
+<div class="containerPrimeColor containerPrimeColorB">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<div class="containerIncDec">
+<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
+<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
+</div>
+</div>
+<!-- /containerPrimeColorG --></div>
+
+</div>
+
+<div class="containerColor">
+<span class="joinedCode">#000000</span>
+<div class="contentPainted"></div>
+</div>
+
+<!-- /demoHexColorCode --></div>
+
+<script>
+;(function(undefined) {
+
+  // ============================================== Main Routine
+  document.addEventListener('DOMContentLoaded', () => {
+    const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
+
+    seriesElemSwitch.forEach (elemSwitch => {
+      elemSwitch.addEventListener('click', () => {
+        actionOnSwicth(elemSwitch);
+      });
+    });
+
+    const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
+      seriesCtrlIncDec.forEach(ctrlIncDec => {
+        ctrlIncDec.addEventListener('click', () => {
+            actionOnIncDec(ctrlIncDec);
+        });
+      });
+  });
+
+  // ============================================== Sub Routines
+  function actionOnIncDec(elemCtrl) {
+    const incDec = (function() {
+      let ret = 'dec';
+      if(elemCtrl.classList.contains('controlInc')) {
+        ret = 'inc';
+      }
+      return ret;
+    })();
+
+    const elemContainer = elemCtrl.closest('.componentSwitchHex');
+    const seriesElemSwitch = Array.from(elemContainer.querySelectorAll('.contentSwitch'));
+
+    const elemValue = elemCtrl.closest('.componentSwitchHex').querySelector('.codeHex');
+    const elemColorPainted = document.querySelector('.contentPainted');
+
+    const valueFrom = parseInt(elemValue.innerText, 16);
+    let valueTo = 0;
+
+    if(incDec === 'inc') {
+      valueTo = valueFrom + 1;
+    }
+    else {
+      valueTo = valueFrom - 1;
+    }
+
+    if (valueTo > 15) {
+      valueTo = 0x0;
+    }
+    if(valueTo < 0) {
+      valueTo = 0xffff;
+    }
+
+    const valueToInBinary = ('0000' + valueTo.toString(2)).slice(-4);
+
+    valueToInBinary.split('').forEach((value, ix) => {
+      const elemSwitch = seriesElemSwitch[ix];
+      if(value === '1') {
+        elemSwitch.classList.add('on');
+      }
+      else {
+        elemSwitch.classList.remove('on');
+      }
+
+      applyHex(elemSwitch);
+      applyColor(elemColorPainted);
+    });
+  }
+
+  function actionOnSwicth(elemSwitch) {
+    const elemColorPainted = document.querySelector('.contentPainted');
+    if(elemSwitch.classList.contains('on')) {
+      elemSwitch.classList.remove('on');
+    }
+    else {
+      elemSwitch.classList.add('on');
+    }
+
+    applyHex(elemSwitch);
+    applyColor(elemColorPainted);
+  }
+
+  function applyColor(elemColorPainted) {
+    const seriesElemHex = Array.from(document.querySelectorAll('.codeHex'));
+
+    const seriesCodeHex = [];
+    seriesElemHex.forEach(elemHex => {
+      seriesCodeHex.push(elemHex.innerText);
+    });
+
+    const colorCode = seriesCodeHex.join('');
+
+    document.querySelector('.joinedCode').innerText = '#' + colorCode;
+    elemColorPainted.style.backgroundColor = '#' + colorCode;
+  }
+
+  function applyHex(elemCtrl) {
+    const container = elemCtrl.closest('.componentSwitchHex');
+    const elemCodeHex = container.querySelector('.codeHex');
+    const seriesElemSwitch = Array.from(container.querySelectorAll('.contentSwitch'));
+
+    const seriesOnOff = [];
+    seriesElemSwitch.forEach(elemSwitch => {
+      const onOff = elemSwitch.classList.contains('on') ? '1' : '0';
+      seriesOnOff.push(onOff);
+    });
+
+    const codeHex =  parseInt(seriesOnOff.join(''), 2).toString(16);
+
+    elemCodeHex.innerText = codeHex;
+    return codeHex;
+  }
+
+})(void(0));
+</script>
+
+</body>
+</html>

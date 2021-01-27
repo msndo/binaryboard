@@ -1,0 +1,53 @@
+/** Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/) http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main { display: block; }
+body { line-height: 1; box-sizing: border-box; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+select { -moz-appearance: none; -webkit-appearance: none; appearance: none; border-radius: 0; border: 0; margin: 0; padding: 0; background: none transparent; vertical-align: middle; font-size: inherit; color: inherit; box-sizing: content-box; }
+select::-ms-expand { display: none; }
+a { text-decoration: none; color: #aaa; }
+
+.containerTitlePage { padding: 30px 80px; }
+.titlePage { font-size: 3vw; }
+
+.demoHexColorCode { padding: 30px; padding: 30px 80px; }
+
+.crusterSwitch { display: flex; align-items: flex-start; justify-content: space-between; }
+
+.containerPrimeColor { position: relative; display: flex; width: calc(33.3% - 10px);  justify-content: space-between; padding-bottom: 20px; border-bottom: 5px solid #000; }
+.containerPrimeColor::after { content: ''; display: block; position: absolute; bottom: -10px; left: 0; width: 100%; height: 5px; background-color: #000; }
+.containerPrimeColorR::after { background-color: #f00; }
+.containerPrimeColorG::after { background-color: #0f0; }
+.containerPrimeColorB::after { background-color: #00f; }
+
+.componentSwitchHex { width: calc(50% - 4px); }
+
+.codeHex { font-size: 3vw; font-weight: bold; }
+
+
+.componentSwitchHex .codeHex { display: block; width: auto; text-align: center; padding: 10px; }
+
+.seriesSwitch { display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
+.codeHex + .seriesSwitch { margin-top: 10px; }
+
+.containerSwitch { width: 25%; }
+
+.containerSwitch .contentSwitch { display: block; }
+
+.containerSwitch .contentSwitch:hover { opacity: .5; }
+.containerSwitch .contentSwitch::after { content: ''; display: block; padding-top: 135.6%; background: url(../img/switch_denki_dentou_off.png); background-size: 100% auto; }
+.containerSwitch .contentSwitch.on::after { background-image: url(../img/switch_denki_dentou_on.png); }
+
+.contentPainted { width: 30vw; height: 10vw; background-color: #000000; }
+
+.containerColor { margin-top: 50px; }
+.containerColor .joinedCode { display: block; margin: auto; padding: 10px 0; text-align: center; }
+.containerColor .contentPainted { margin: auto;; }
+
+.containerIncDec { display: flex; margin: 10px 0 0; padding: 0 3px; width: auto; justify-content: space-between; }
+.containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #aab; border-radius: 10%; text-align: center; line-height: 1; }
+.containerIncDec .controlIncDec:hover { opacity: .5; }
