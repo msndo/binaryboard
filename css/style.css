@@ -2,7 +2,7 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main { display: block; }
-body { line-height: 1; box-sizing: border-box; }
+body { line-height: 1; box-sizing: border-box; color: #333; }
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
@@ -11,22 +11,25 @@ select { -moz-appearance: none; -webkit-appearance: none; appearance: none; bord
 select::-ms-expand { display: none; }
 a { text-decoration: none; color: #aaa; }
 
-.containerTitlePage { padding: 30px 80px; }
-.titlePage { font-size: 3vw; }
+.preload { display: none; }
 
-.demoHexColorCode { padding: 30px; padding: 30px 80px; }
+.containerTitlePage { padding: 5vw 6vw 3vw; }
+.titlePage { font-size: 4.5vw; }
+.tagline { padding: 1.5vw .5vw; font-size: 2vw }
+
+.demoHexColorCode { padding: 3vw 6.5vw; }
 
 .crusterSwitch { display: flex; align-items: flex-start; justify-content: space-between; }
 
-.containerPrimeColor { position: relative; display: flex; width: calc(33.3% - 10px);  justify-content: space-between; padding-bottom: 20px; border-bottom: 5px solid #000; }
-.containerPrimeColor::after { content: ''; display: block; position: absolute; bottom: -10px; left: 0; width: 100%; height: 5px; background-color: #000; }
-.containerPrimeColorR::after { background-color: #f00; }
-.containerPrimeColorG::after { background-color: #0f0; }
-.containerPrimeColorB::after { background-color: #00f; }
+.containerPrimeColor { position: relative; display: flex; width: calc(33.3% - 10px);  justify-content: space-between; padding-bottom: 20px; border-bottom: 5px solid #A9B2BB; }
+.containerPrimeColor::after { content: 'Red'; text-align: center; display: block; position: absolute; bottom: calc(-5vw); left: 0; width: 100%; padding: 1vw 0; font-size: 2vw; color: #aab; }
+.containerPrimeColorR::after { content: 'Red'; }
+.containerPrimeColorG::after { content: 'Green'; } 
+.containerPrimeColorB::after { content: 'Blue'; }
 
 .componentSwitchHex { width: calc(50% - 4px); }
 
-.codeHex { font-size: 3vw; font-weight: bold; }
+.codeHex { font-size: 3vw; font-weight: bold; color: #aab; }
 
 
 .componentSwitchHex .codeHex { display: block; width: auto; text-align: center; padding: 10px; }
@@ -44,10 +47,10 @@ a { text-decoration: none; color: #aaa; }
 
 .contentPainted { width: 30vw; height: 10vw; background-color: #000000; }
 
-.containerColor { margin-top: 50px; }
+.containerColor { margin-top: 80px; }
 .containerColor .joinedCode { display: block; margin: auto; padding: 10px 0; text-align: center; }
 .containerColor .contentPainted { margin: auto;; }
 
 .containerIncDec { display: flex; margin: 10px 0 0; padding: 0 3px; width: auto; justify-content: space-between; }
-.containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #aab; border-radius: 10%; text-align: center; line-height: 1; }
+.containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #A9B2BB; border-radius: 17%; text-align: center; line-height: 1; font-size: 1.58vw; color: #A9B2BB; }
 .containerIncDec .controlIncDec:hover { opacity: .5; }

@@ -12,9 +12,11 @@
 
 <body class="appDemoHexColorCode">
 <header class="containerTitlePage">
-<h1 class="titlePage">カラーコードと二進数</h1>
+<h1 class="titlePage">カラーコードと2進数・16進数</h1>
+<p class="tagline">24-bit Color-Code in Binary, Hexadecimal</p>
 </header>
 
+<img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 
 <div class="demoHexColorCode">
 <div class="crusterSwitch">
@@ -235,6 +237,28 @@
     const codeHex =  parseInt(seriesOnOff.join(''), 2).toString(16);
 
     elemCodeHex.innerText = codeHex;
+
+    const elemContainerPrimeColor = elemCtrl.closest('.containerPrimeColor');
+    const codePrimeColor = (function() {
+      const seriesCode = [];
+      const seriesElemCodeHex = Array.from(elemContainerPrimeColor.querySelectorAll('.codeHex'));
+      seriesElemCodeHex.forEach((elemCodeHex) => {
+        seriesCode.push(elemCodeHex.innerText);
+      });
+
+      return seriesCode.join('');
+    })();
+
+    if(elemContainerPrimeColor.classList.contains('containerPrimeColorR')) {
+      elemContainerPrimeColor.style.borderBottomColor = '#' + codePrimeColor + '0000';
+    }
+    if(elemContainerPrimeColor.classList.contains('containerPrimeColorG')) {
+      elemContainerPrimeColor.style.borderBottomColor = '#' + '00' + codePrimeColor + '00';
+    }
+    if(elemContainerPrimeColor.classList.contains('containerPrimeColorB')) {
+      elemContainerPrimeColor.style.borderBottomColor = '#' + '0000' + codePrimeColor;
+    }
+
     return codeHex;
   }
 
