@@ -52,5 +52,15 @@ a { text-decoration: none; color: #aaa; }
 .containerColor .contentPainted { margin: auto;; }
 
 .containerIncDec { display: flex; margin: 10px 0 0; padding: 0 3px; width: auto; justify-content: space-between; }
-.containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #A9B2BB; border-radius: 17%; text-align: center; line-height: 1; font-size: 1.58vw; color: #A9B2BB; }
+.containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #A9B2BB; border-radius: 17%; text-align: center; line-height: 1; font-size: 1.58vw; color: #A9B2BB; transition: background-color .8s cubic-bezier(0.25, 1, 0.5, 1); }
 .containerIncDec .controlIncDec:hover { opacity: .5; }
+
+.beginShaking {  animation: shaking .17s infinite; transform-origin: center; }
+.shaking { animation: shaking .12s infinite; transform-origin: center;  }
+.charging { background-color: #fa0; transition: none; }
+
+@keyframes shaking {
+	0% { transform: rotate(0deg) translateY(0px); }
+	25% { transform: rotate(6deg); }
+	75% { transform: rotate(-6deg); }
+}

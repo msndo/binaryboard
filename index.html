@@ -140,14 +140,60 @@
     });
 
     const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
-      seriesCtrlIncDec.forEach(ctrlIncDec => {
-        ctrlIncDec.addEventListener('click', () => {
-            actionOnIncDec(ctrlIncDec);
-        });
+    seriesCtrlIncDec.forEach(ctrlIncDec => {
+      ctrlIncDec.addEventListener('mousedown', (ev) => {
+        repeatOnPressingDevice(ctrlIncDec, ev);
       });
+    });
   });
 
   // ============================================== Sub Routines
+  function repeatOnPressingDevice(elemCtrl, ev) {
+    const durationWait = 800;
+    const durationInterval = 160;
+
+    let timerWait = null;
+    let timerRepeat = null;
+
+    classnameCharging = 'charging';
+    classnameBeginShaking = 'beginShaking'
+    classnameShaking = 'shaking';
+
+    actionOnIncDec(elemCtrl);
+    elemCtrl.classList.add(classnameCharging);
+    elemCtrl.classList.add(classnameBeginShaking);
+
+    timerWait = setTimeout(() => {
+      elemCtrl.classList.remove(classnameBeginShaking);
+      elemCtrl.classList.add(classnameShaking);
+
+      timerRepeat = setInterval(() => {
+        actionOnIncDec(elemCtrl);
+      }, durationInterval);
+    }, durationWait);
+
+    elemCtrl.addEventListener('mouseup', (ev) => {
+      _quit(ev);
+    });
+    elemCtrl.addEventListener('mouseleave', (ev) => {
+      _quit(ev);
+    });
+
+    function _quit(ev) {
+      ev.preventDefault();
+
+      clearInterval(timerRepeat);
+      clearTimeout(timerWait);
+
+      timerWait = null;
+      timerRepeat = null;
+
+      elemCtrl.classList.remove(classnameBeginShaking);
+      elemCtrl.classList.remove(classnameShaking);
+      elemCtrl.classList.remove(classnameCharging);
+    }
+  }
+
   function actionOnIncDec(elemCtrl) {
     const incDec = (function() {
       let ret = 'dec';
