@@ -28,6 +28,8 @@ a { text-decoration: none; color: #aaa; }
 .containerPrimeColorG::after { content: 'Green'; } 
 .containerPrimeColorB::after { content: 'Blue'; }
 
+.containerBitWithIncDec { position: relative; display: flex; width: calc(33.3% - 10px);  justify-content: space-between; padding-bottom: 20px; }
+
 .componentSwitchHex { width: calc(50% - 4px); }
 
 .codeHex { font-size: 3vw; font-weight: bold; color: #aab; }

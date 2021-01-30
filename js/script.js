@@ -1,20 +1,9 @@
-;(function(undefined) {
-
-  const statusForDragOperation = {
-    isMouseButtonPressed: false,
-    stateTo: false
-  };
-
+;(function(global, undefined) {
   // ============================================== Main Routine
+  buildStatusHolder();
+
   document.addEventListener('DOMContentLoaded', () => {
     const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
-
-    document.body.addEventListener('mousedown', () => {
-      statusForDragOperation.isMouseButtonPressed = true;
-    })
-    document.body.addEventListener('mouseup', () => {
-      statusForDragOperation.isMouseButtonPressed = false;
-    })
 
 
     seriesElemSwitch.forEach (elemSwitch => {
@@ -29,12 +18,7 @@
           statusForDragOperation.stateTo = false;
         }
 
-        /*/
-        elemSwitch.parentNode.classList.add('particle');
-        setTimeout(function() {
-          elemSwitch.parentNode.classList.remove('particle');
-        }, 800);
-        /*/
+        //fireParticle(elemSwitch);
       });
       elemSwitch.addEventListener('mousemove', (ev) => {
         if(statusForDragOperation.isMouseButtonPressed) {
@@ -50,10 +34,7 @@
           else {
             turnOffSwitch(elemSwitch);
           }
-          elemSwitch.parentNode.classList.add('particle');
-          setTimeout(function() {
-            elemSwitch.parentNode.classList.remove('particle');
-          }, 800);
+          fireParticle(elemSwitch);
         }
       });
       elemSwitch.addEventListener('mouseleave', (ev) => {
@@ -63,39 +44,71 @@
       });
     });
 
+    bindActionIncDec();
+
     if(document.querySelector('.appdemoBinarySwitch')) {
-      seriesElemSwitch.forEach (elemSwitch => {
-        elemSwitch.addEventListener('mousedown', () => {
-          applyColorOnSwicth(elemSwitch);
-        });
+      initBinaryColorCodeUI(seriesElemSwitch);
 
-        elemSwitch.addEventListener('mousemove', (ev) => {
-          if(statusForDragOperation.isMouseButtonPressed) {
-            ev.preventDefault();
-            applyColorOnSwicth(elemSwitch);
-          }
-        });
 
-        elemSwitch.addEventListener('mouseenter', () => {
-          if(statusForDragOperation.isMouseButtonPressed) {
-            applyColorOnSwicth(elemSwitch);
-          }
-        });
-      });
-
-      const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
-      seriesCtrlIncDec.forEach(ctrlIncDec => {
-        ctrlIncDec.addEventListener('mousedown', (ev) => {
-          repeatOnPressingDevice(ctrlIncDec, ev);
-        });
-      });
     }
   });
 
   // ============================================== Sub Routines
+  function bindActionIncDec() {
+    const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
+    seriesCtrlIncDec.forEach(ctrlIncDec => {
+      ctrlIncDec.addEventListener('mousedown', (ev) => {
+        repeatOnPressingDevice(ctrlIncDec, ev);
+      });
+    });
+  }
+
+
+  function buildStatusHolder() {
+    global.statusForDragOperation = {
+      isMouseButtonPressed: false,
+      stateTo: false
+    };
+
+    document.body.addEventListener('mousedown', () => {
+      statusForDragOperation.isMouseButtonPressed = true;
+    })
+    document.body.addEventListener('mouseup', () => {
+      statusForDragOperation.isMouseButtonPressed = false;
+    });
+  }
+
+  function fireParticle(elemSwitch) {
+    elemSwitch.parentNode.classList.add('particle');
+    setTimeout(function() {
+      elemSwitch.parentNode.classList.remove('particle');
+    }, 800);
+  }
+
+  function initBinaryColorCodeUI(seriesElemSwitch) {
+    seriesElemSwitch.forEach (elemSwitch => {
+      elemSwitch.addEventListener('mousedown', () => {
+        applyColorOnSwicth(elemSwitch);
+      });
+
+      elemSwitch.addEventListener('mousemove', (ev) => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          ev.preventDefault();
+          applyColorOnSwicth(elemSwitch);
+        }
+      });
+
+      elemSwitch.addEventListener('mouseenter', () => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          applyColorOnSwicth(elemSwitch);
+        }
+      });
+    });
+  }
+
   function repeatOnPressingDevice(elemCtrl, ev) {
-    const durationWait = 800;
-    const durationInterval = 160;
+    const durationWait = 500;
+    const durationInterval = 140;
 
     let timerWait = null;
     let timerRepeat = null;
@@ -172,7 +185,10 @@
       else { elemSwitch.classList.remove('on'); }
 
       applyHex(elemSwitch);
-      applyColor(elemColorPainted);
+
+      if(elemColorPainted) {
+        applyColor(elemColorPainted);
+      }
     });
   }
 
@@ -194,9 +210,12 @@
   }
 
   function applyColorOnSwicth(elemSwitch) {
-    const elemColorPainted = document.querySelector('.contentPainted');
     applyHex(elemSwitch);
-    applyColor(elemColorPainted);
+
+    const elemColorPainted = document.querySelector('.contentPainted');
+    if(elemColorPainted) {
+      applyColor(elemColorPainted);
+    }
   }
 
 
@@ -235,6 +254,8 @@
 
   function applyColorToPrimeColorBar(elemCtrl) {
     const elemContainerPrimeColor = elemCtrl.closest('.containerPrimeColor');
+    if(!elemContainerPrimeColor) { return; }
+
     const codePrimeColor = (function() {
       const seriesCode = [];
       const seriesElemCodeHex = Array.from(elemContainerPrimeColor.querySelectorAll('.codeHex'));
@@ -256,4 +277,4 @@
     }
   }
 
-})(void(0));
+})(window, void(0));
