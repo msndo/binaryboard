@@ -11,9 +11,10 @@ select { -moz-appearance: none; -webkit-appearance: none; appearance: none; bord
 select::-ms-expand { display: none; }
 a { text-decoration: none; color: #aaa; }
 
+
 .preload { display: none; }
 
-.containerTitlePage { padding: 5vw 6vw 3vw; }
+.containerTitlePage { padding: 4vw 6vw 0; }
 .titlePage { font-size: 4.5vw; }
 .tagline { padding: 1.5vw .5vw; font-size: 2vw }
 
@@ -40,14 +41,13 @@ a { text-decoration: none; color: #aaa; }
 .containerSwitch { width: 25%; }
 
 .containerSwitch .contentSwitch { display: block; }
-
 .containerSwitch .contentSwitch:hover { opacity: .5; }
 .containerSwitch .contentSwitch::after { content: ''; display: block; padding-top: 135.6%; background: url(../img/switch_denki_dentou_off.png); background-size: 100% auto; }
 .containerSwitch .contentSwitch.on::after { background-image: url(../img/switch_denki_dentou_on.png); }
 
 .contentPainted { width: 30vw; height: 10vw; background-color: #000000; }
 
-.containerColor { margin-top: 80px; }
+.containerColor { margin-top: 8vw; }
 .containerColor .joinedCode { display: block; margin: auto; padding: 10px 0; text-align: center; }
 .containerColor .contentPainted { margin: auto;; }
 
