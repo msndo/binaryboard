@@ -18,7 +18,7 @@ a { text-decoration: none; color: #aaa; }
 .titlePage { font-size: 4.5vw; }
 .tagline { padding: 1.5vw .5vw; font-size: 2vw }
 
-.demoHexColorCode { padding: 3vw 6.5vw; }
+.demoBinarySwitch { padding: 3vw 6.5vw; }
 
 .crusterSwitch { display: flex; align-items: flex-start; justify-content: space-between; }
 
@@ -55,6 +55,10 @@ a { text-decoration: none; color: #aaa; }
 .containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #A9B2BB; border-radius: 17%; text-align: center; line-height: 1; font-size: 1.58vw; color: #A9B2BB; transition: background-color .8s cubic-bezier(0.25, 1, 0.5, 1); }
 .containerIncDec .controlIncDec:hover { opacity: .5; }
 
+/* 'Openworld Switchboard' */
+.twoBytesPerRow { display: flex; flex-wrap: wrap; }
+.twoBytesPerRow .seriesSwitch { width: 50%; }
+
 .beginShaking {  animation: shaking .17s infinite; transform-origin: center; }
 .shaking { animation: shaking .12s infinite; transform-origin: center;  }
 .charging { background-color: #fa0; transition: none; }
@@ -63,4 +67,90 @@ a { text-decoration: none; color: #aaa; }
 	0% { transform: rotate(0deg) translateY(0px); }
 	25% { transform: rotate(6deg); }
 	75% { transform: rotate(-6deg); }
+}
+
+.particle { position: relative; }
+.particle::before,
+.particle::after {
+	position: absolute;
+	left: 35%; top: 21%;
+	content: '';
+	display: block;
+	width: 25px;
+	height: 25px;
+	background-position: 0 0;
+	background-size: 100%;
+
+	opacity: .8;
+
+  animation: cubic-bezier(0.87, 0, 0.13, 1);
+}
+.particle::before {
+	width: 15px;
+	height: 15px;
+	background-image: url(../img/small_star7_yellow.png);
+  animation: particleLeftward .8s;
+}
+.particle::after {
+	background-image: url(../img/small_star7_yellow.png);
+  animation: particleRightward .9s;
+}
+
+.particle:nth-of-type(4n)::before {
+  animation: particleLeftwardAccent .9s;
+}
+.particle:nth-of-type(3n)::after {
+  animation: particleRightwardAccent .9s;
+}
+
+@keyframes particleLeftward {
+	70% {
+		opacity: .8;
+	}
+	90% {
+		transform: translate(-1.2vw, -2vw) rotate(360deg);
+	}
+	100% {
+		transform: translate(-1.2vw, -1.5vw) rotate(520deg);
+		opacity: .0;
+	}
+}
+
+@keyframes particleRightward {
+	70% {
+		opacity: .8;
+	}
+	85% {
+		transform: translate(1.8vw, -7vw) rotate(480deg);
+	}
+	100% {
+		transform: translate(2.2vw, -6vw) rotate(520deg);
+		opacity: .7;
+	}
+}
+
+@keyframes particleLeftwardAccent {
+	70% {
+		opacity: .8;
+	}
+	90% {
+		transform: translate(-2vw, -4vw) rotate(360deg);
+	}
+	100% {
+		transform: translate(-2vw, -3vw) rotate(520deg);
+		opacity: .0;
+	}
+}
+
+@keyframes particleRightwardAccent {
+	70% {
+		opacity: .8;
+	}
+	85% {
+		transform: translate(1.2vw, -9vw) rotate(480deg);
+	}
+	100% {
+		transform: translate(1.5vw, -8vw) rotate(520deg);
+		opacity: .7;
+	}
 }

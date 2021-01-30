@@ -1,57 +1,86 @@
 ;(function(undefined) {
 
-  let isMouseButtonPressed = false;
+  const statusForDragOperation = {
+    isMouseButtonPressed: false,
+    stateTo: false
+  };
 
   // ============================================== Main Routine
   document.addEventListener('DOMContentLoaded', () => {
     const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
 
     document.body.addEventListener('mousedown', () => {
-      isMouseButtonPressed = true;
+      statusForDragOperation.isMouseButtonPressed = true;
     })
     document.body.addEventListener('mouseup', () => {
-      isMouseButtonPressed = false;
+      statusForDragOperation.isMouseButtonPressed = false;
     })
 
 
     seriesElemSwitch.forEach (elemSwitch => {
-      elemSwitch.addEventListener('mousedown', () => {
+      elemSwitch.addEventListener('mousedown', (ev) => {
+        ev.preventDefault();
         toggleSwicth(elemSwitch);
-      });
 
+        if(elemSwitch.classList.contains('on')) {
+          statusForDragOperation.stateTo = true;
+        }
+        else {
+          statusForDragOperation.stateTo = false;
+        }
+
+        /*/
+        elemSwitch.parentNode.classList.add('particle');
+        setTimeout(function() {
+          elemSwitch.parentNode.classList.remove('particle');
+        }, 800);
+        /*/
+      });
       elemSwitch.addEventListener('mousemove', (ev) => {
-        if(isMouseButtonPressed) {
+        if(statusForDragOperation.isMouseButtonPressed) {
           ev.preventDefault();
-          console.log('MOVE')
         }
       });
 
-      elemSwitch.addEventListener('mouseenter', () => {
-        if(isMouseButtonPressed) {
-          turnOnSwitch(elemSwitch);
+      elemSwitch.addEventListener('mouseenter', (ev) => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          if(statusForDragOperation.stateTo) {
+            turnOnSwitch(elemSwitch);
+          }
+          else {
+            turnOffSwitch(elemSwitch);
+          }
+          elemSwitch.parentNode.classList.add('particle');
+          setTimeout(function() {
+            elemSwitch.parentNode.classList.remove('particle');
+          }, 800);
+        }
+      });
+      elemSwitch.addEventListener('mouseleave', (ev) => {
+          ev.preventDefault();
+        if(statusForDragOperation.isMouseButtonPressed) {
         }
       });
     });
 
-    if(document.querySelector('.appDemoHexColorCode')) {
+    if(document.querySelector('.appdemoBinarySwitch')) {
       seriesElemSwitch.forEach (elemSwitch => {
         elemSwitch.addEventListener('mousedown', () => {
           applyColorOnSwicth(elemSwitch);
         });
 
         elemSwitch.addEventListener('mousemove', (ev) => {
-          if(isMouseButtonPressed) {
+          if(statusForDragOperation.isMouseButtonPressed) {
             ev.preventDefault();
             applyColorOnSwicth(elemSwitch);
           }
         });
 
         elemSwitch.addEventListener('mouseenter', () => {
-          if(isMouseButtonPressed) {
+          if(statusForDragOperation.isMouseButtonPressed) {
             applyColorOnSwicth(elemSwitch);
           }
         });
-
       });
 
       const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
@@ -61,7 +90,6 @@
         });
       });
     }
-
   });
 
   // ============================================== Sub Routines
