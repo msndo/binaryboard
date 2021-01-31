@@ -33,6 +33,7 @@
 <img class="preload imgEtoSrc" src="img/eto_1011_inu.png" alt="戌">
 <img class="preload imgEtoSrc" src="img/eto_1100_yi.png" alt="亥">
 <img class="preload imgEtoSrc" src="img/eto_1101_neko.png" alt="ねこ">
+<img class="preload imgEtoSrc" src="img/eto_err.png" alt="エラー">
 
 <div class="demoEto">
 <div class="crusterSwitch">
@@ -72,7 +73,6 @@
 (function() {
 document.addEventListener('DOMContentLoaded', () => {
   const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
-  const seriesCtrl = Array.from(document.querySelectorAll('.contentSwitch, .controlIncDec'))
   const elemCodeHex = document.querySelector('.codeHex');
   const elemDest = document.querySelector('.contentScreen');
 
@@ -80,19 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const hex = elemCodeHex.innerText;
     console.log(hex);
     let dec = parseInt('0x' + hex, 16);
-    console.log(dec)
 
     if(dec > 12) {
-      dec = 12;
+      dec = 13
     }
 
-    var elemImgFrom = seriesImgFrom[dec];
-    var imgSrc = elemImgFrom.getAttribute('src');
-    var imgAlt = elemImgFrom.getAttribute('alt');
+    let elemImgFrom = seriesImgFrom[dec];
+    let imgSrc = elemImgFrom.getAttribute('src');
+    let imgAlt = elemImgFrom.getAttribute('alt');
+
     elemDest.setAttribute('src', imgSrc);
     elemDest.setAttribute('alt', imgAlt);
-
-  })
+  });
 });
 })();
 
