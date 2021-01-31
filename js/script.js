@@ -76,6 +76,13 @@
     document.body.addEventListener('mouseup', () => {
       statusForDragOperation.isMouseButtonPressed = false;
     });
+
+    document.body.addEventListener('touchstart', () => {
+      statusForDragOperation.isMouseButtonPressed = true;
+    })
+    document.body.addEventListener('touchend', () => {
+      statusForDragOperation.isMouseButtonPressed = false;
+    });
   }
 
   function fireParticle(elemSwitch) {
