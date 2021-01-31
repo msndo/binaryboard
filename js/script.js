@@ -7,7 +7,7 @@
 
 
     seriesElemSwitch.forEach (elemSwitch => {
-      elemSwitch.addEventListener('mousedown', (ev) => {
+      elemSwitch.addEventListener('pointerdown', (ev) => {
         ev.preventDefault();
         toggleSwicth(elemSwitch);
 
@@ -18,11 +18,36 @@
           statusForDragOperation.stateTo = false;
         }
 
-        //fireParticle(elemSwitch);
+        fireParticle(elemSwitch);
       });
       elemSwitch.addEventListener('mousemove', (ev) => {
         if(statusForDragOperation.isMouseButtonPressed) {
           ev.preventDefault();
+        }
+      });
+
+      elemSwitch.addEventListener('touchmove', (ev) => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          ev.preventDefault();
+
+          const infoTouch = ev.touches;
+          const ixLast = infoTouch.length - 1;
+
+          const clientX = infoTouch[ixLast].pageX;
+          const clientY = infoTouch[ixLast].pageY;
+          const elemTarget = document.elementFromPoint(clientX, clientY);
+
+          if(!elemTarget.classList.contains('contentSwitch')) {
+            return;
+          }
+
+          if(statusForDragOperation.stateTo) {
+            turnOnSwitch(elemTarget);
+          }
+          else {
+            turnOffSwitch(elemTarget);
+          }
+          fireParticle(elemTarget);
         }
       });
 
@@ -57,7 +82,7 @@
   function bindActionIncDec() {
     const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
     seriesCtrlIncDec.forEach(ctrlIncDec => {
-      ctrlIncDec.addEventListener('mousedown', (ev) => {
+      ctrlIncDec.addEventListener('pointerdown', (ev) => {
         repeatOnPressingDevice(ctrlIncDec, ev);
       });
     });
@@ -70,17 +95,10 @@
       stateTo: false
     };
 
-    document.body.addEventListener('mousedown', () => {
+    document.body.addEventListener('pointerdown', () => {
       statusForDragOperation.isMouseButtonPressed = true;
     })
-    document.body.addEventListener('mouseup', () => {
-      statusForDragOperation.isMouseButtonPressed = false;
-    });
-
-    document.body.addEventListener('touchstart', () => {
-      statusForDragOperation.isMouseButtonPressed = true;
-    })
-    document.body.addEventListener('touchend', () => {
+    document.body.addEventListener('pointerup', () => {
       statusForDragOperation.isMouseButtonPressed = false;
     });
   }
@@ -94,7 +112,7 @@
 
   function initBinaryColorCodeUI(seriesElemSwitch) {
     seriesElemSwitch.forEach (elemSwitch => {
-      elemSwitch.addEventListener('mousedown', () => {
+      elemSwitch.addEventListener('pointerdown', () => {
         applyColorOnSwicth(elemSwitch);
       });
 
@@ -137,10 +155,10 @@
       }, durationInterval);
     }, durationWait);
 
-    elemCtrl.addEventListener('mouseup', (ev) => {
+    elemCtrl.addEventListener('pointerup', (ev) => {
       _quit(ev);
     });
-    elemCtrl.addEventListener('mouseleave', (ev) => {
+    elemCtrl.addEventListener('pointerleave', (ev) => {
       _quit(ev);
     });
 

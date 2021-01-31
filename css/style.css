@@ -11,7 +11,9 @@ select { -moz-appearance: none; -webkit-appearance: none; appearance: none; bord
 select::-ms-expand { display: none; }
 a { text-decoration: none; color: #aaa; }
 
-
+body {
+	font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+}
 .preload { display: none; }
 
 .containerTitlePage { padding: 4vw 6vw 0; }
