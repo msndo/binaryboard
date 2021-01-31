@@ -272,6 +272,11 @@
     const codeHex =  parseInt(seriesOnOff.join(''), 2).toString(16);
     elemCodeHex.innerText = codeHex;
 
+    // trigger 'changeContent'
+    var event = document.createEvent('HTMLEvents');
+    event.initEvent('changeContent', true, false);
+    elemCodeHex.dispatchEvent(event);
+
     applyColorToPrimeColorBar(elemCtrl);
 
     return codeHex;

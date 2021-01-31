@@ -158,3 +158,13 @@ body {
 		opacity: .7;
 	}
 }
+
+
+.demoEto { display: flex; padding: 4vw 6vw 0; }
+.demoEto .crusterSwitch { width: 40%; }
+.demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
+.demoEto .sectionScreen { display: flex;   position: relative; width: 40%;  }
+.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; justify-content: center; width: calc(10vw * 1.777); height: 10vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
+.contentScreen { display: block; width: auto; }
+.demoEto .containerScreen .contentScreen { height: calc(10vw - 20%); }
+

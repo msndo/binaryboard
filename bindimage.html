@@ -14,14 +14,27 @@
 <div class="appdemoBinarySwitch">
 <header class="containerTitlePage">
 <h1 class="titlePage">絵を出す！</h1>
-<p class="tagline">Binary Openworld</p>
+<p class="tagline">Bind Picture of Eto with Number-Switch</p>
 </header>
 
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
+<img class="preload imgEtoSrc" src="img/eto_0000_ne.png" alt="子">
+<img class="preload imgEtoSrc" src="img/eto_0001_ushi.png" alt="丑">
+<img class="preload imgEtoSrc" src="img/eto_0010_tora.png" alt="寅">
+<img class="preload imgEtoSrc" src="img/eto_0011_usagi.png" alt="卯">
+<img class="preload imgEtoSrc" src="img/eto_0100_tatu.png" alt="辰">
+<img class="preload imgEtoSrc" src="img/eto_0101_mi.png" alt="巳">
+<img class="preload imgEtoSrc" src="img/eto_0111_uma.png" alt="午">
+<img class="preload imgEtoSrc" src="img/eto_1000_hitsuji.png" alt="未">
+<img class="preload imgEtoSrc" src="img/eto_1001_saru.png" alt="申">
+<img class="preload imgEtoSrc" src="img/eto_1010_tori.png" alt="酉">
+<img class="preload imgEtoSrc" src="img/eto_1011_inu.png" alt="戌">
+<img class="preload imgEtoSrc" src="img/eto_1100_yi.png" alt="亥">
+<img class="preload imgEtoSrc" src="img/eto_1101_neko.png" alt="ねこ">
 
-<div class="demoBinarySwitch">
+<div class="demoEto">
 <div class="crusterSwitch">
 
 <div class="containerBitWithIncDec">
@@ -39,12 +52,52 @@
 <a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
 </div>
 </div>
-<!-- /containerPrimeColor --></div>
+<!-- /containerBitWithIncDec --></div>
+<!-- /crusterSwitch --> </div>
 
-<!-- /demoBinarySwitch --> </div>
+<div class="sectionScreen">
+<div class="containerScreen">
+<img class="contentScreen" src="img/eto_0000_ne.png" alt="子">
+</div>
+</div>
+
+<!-- /demoEto --> </div>
+
+
 <!-- /appdemoBinarySwitch --></div>
 
 <script src="js/script.js"></script>
+
+<script>
+(function() {
+document.addEventListener('DOMContentLoaded', () => {
+  const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
+  const seriesCtrl = Array.from(document.querySelectorAll('.contentSwitch, .controlIncDec'))
+  const elemCodeHex = document.querySelector('.codeHex');
+  const elemDest = document.querySelector('.contentScreen');
+
+  elemCodeHex.addEventListener('changeContent', (ev) => {
+    const hex = elemCodeHex.innerText;
+    console.log(hex);
+    let dec = parseInt('0x' + hex, 16);
+    console.log(dec)
+
+    if(dec > 12) {
+      dec = 12;
+    }
+
+    var elemImgFrom = seriesImgFrom[dec];
+    var imgSrc = elemImgFrom.getAttribute('src');
+    var imgAlt = elemImgFrom.getAttribute('alt');
+    elemDest.setAttribute('src', imgSrc);
+    elemDest.setAttribute('alt', imgAlt);
+
+  })
+});
+})();
+
+
+</script>
 
 </body>
 </html>
