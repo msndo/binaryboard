@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head>
+<meta charset="utf-8">
+<title>足し算</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+</head>
+
+<body>
+<div class="appdemoBinarySwitch">
+<header class="containerTitlePage">
+<h1 class="titlePage">足し算</h1>
+<p class="tagline">Calculate Addition</p>
+</header>
+
+<img class="preload" src="img/switch_denki_dentou_on.png" alt="">
+<img class="preload" src="img/small_star7_yellow.png" alt="">
+
+<div class="demoAddition">
+<div class="crusterSwitch valueFrom">
+<div class="containerBitWithIncDec">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+</div>
+<!-- /containerBitWithIncDec --></div>
+<!-- /crusterSwitch --> </div>
+
+
+<div class="crusterSwitch valueTo">
+<div class="containerBitWithIncDec">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+</div>
+<!-- /containerBitWithIncDec --></div>
+<!-- /crusterSwitch --> </div>
+
+<div class="containerSignCalc"><a class="contentSignCalc signPlus" href="javascript:void(0);">+</a></div>
+
+<div class="crusterSwitch result">
+<div class="containerBitWithIncDec">
+<div class="componentSwitchHex">
+<span class="codeHex">0</span>
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+</div>
+<!-- /containerBitWithIncDec --></div>
+<!-- /crusterSwitch --> </div>
+<!-- /demoEto --> </div>
+
+
+<!-- /appdemoBinarySwitch --></div>
+
+<script src="js/script.js"></script>
+
+<script>
+(function() {
+document.addEventListener('DOMContentLoaded', () => {
+  const seriesBitResult = Array.from(document.querySelectorAll('.result'));
+  const signPlus = document.querySelector('.signPlus');
+  const seriesValue = Array.from(document.querySelectorAll('.codeHex'));
+
+  const seriesBunchOfBit = Array.from(document.querySelectorAll('.componentSwitchHex'));
+  const bunchOfBitAdded = Array.from(seriesBunchOfBit[0].querySelectorAll('.contentSwitch'));
+  const bunchOfBitAdd = Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
+  const bunchOfBitResult = Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
+
+
+
+  signPlus.addEventListener('click', (ev) => {
+    const valAdded = parseInt('0x' + seriesValue[0].innerText, 16);
+    const valAdd = parseInt('0x' + seriesValue[1].innerText, 16);
+
+    const valTotal = valAdded + valAdd;
+    const seriesResultBinary = ('00000' + valTotal.toString(2)).slice(-5).split('');
+
+    seriesResultBinary.forEach((resultBinary, ix) => {
+      bunchOfBitResult[ix].classList.remove('on');
+
+      if(resultBinary === '1') {
+        bunchOfBitResult[ix].classList.add('on');
+      }
+      else {
+        bunchOfBitResult[ix].classList.remove('on');
+      }
+    })
+/*/
+
+    // push, popは使わずインデックス参照でやる
+    const ixLowerEndCalculated = bunchOfBitAdded.length - 1;
+    let seriesIsCarryingUp = []; // [true, true ...]
+  
+    let ixBitResult, digitAdded, digitAdd, digitCarry, xorAddedAdd;
+
+    for(let ix = ixLowerEndCalculated; ix >= 0; ix --) {
+      ixBitResult = ix + 1;
+
+      digitAdded = bunchOfBitAdded[ix].classList.contains('on');
+      digitAdd = bunchOfBitAdd[ix].classList.contains('on');
+      digitCarry = bunchOfBitResult[ixBitResult].classList.contains('on');
+
+      xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
+      resultBitCurrent = (xorAddedAdd || digitCarry) ? true : false;
+
+      if(resultBitCurrent) {
+        bunchOfBitResult[ixBitResult].classList.add('on');
+      }
+      else {
+        bunchOfBitResult[ixBitResult].classList.remove('on');
+      }
+
+      // trueビット + trueビット = false と 繰り上げ
+      if((digitAdded && digitAdd) || (resultBitCurrent) ) {
+        bunchOfBitResult[ixBitResult].classList.remove('on');
+        bunchOfBitResult[ixBitResult - 1].classList.add('on');
+      }
+    }
+/*/
+  });
+});
+})();
+
+
+</script>
+
+</body>
+</html>

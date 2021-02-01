@@ -3,7 +3,7 @@
   buildStatusHolder();
 
   document.addEventListener('DOMContentLoaded', () => {
-    const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
+    const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch:not(.result .contentSwitch)'));
 
 
     seriesElemSwitch.forEach (elemSwitch => {

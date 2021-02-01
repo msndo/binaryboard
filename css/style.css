@@ -49,6 +49,22 @@ body {
 .containerSwitch .contentSwitch::after { content: ''; display: block; padding-top: 135.6%; background: url(../img/switch_denki_dentou_off.png); background-size: 100% auto; }
 .containerSwitch .contentSwitch.on::after { background-image: url(../img/switch_denki_dentou_on.png); }
 
+.demoAddition { width: 33%; margin: auto; }
+.demoAddition .codeHex { display: none; }
+.demoAddition .codeHex + .seriesSwitch { margin-top: 0; }
+.demoAddition .containerBitWithIncDec { width: 100%; margin-left: 7vw; padding: 0 5vw 0 0; }
+.demoAddition .containerBitWithIncDec .componentSwitchHex { width: 100%; line-height: 1; }
+
+.demoAddition .crusterSwitch.result { margin-top: 1vw; }
+.demoAddition .crusterSwitch.result .containerBitWithIncDec { margin-left: 2vw; }
+
+.result .contentSwitch { opacity: .6; pointer-events: none; }
+
+
+.containerSignCalc { margin-top: -4.8vw; display: flex; align-items: flex-start; padding: .5vw 0 1.5vw; border-bottom: 3px solid #666; }
+.containerSignCalc .contentSignCalc { display: block; padding: .7vw 1vw 1vw; font-size: 2vw; border: .2vw solid #bbc; border-radius: 8%; line-height: 1; }
+.contentSignCalc:hover { opacity: .5; }
+
 .contentPainted { width: 30vw; height: 10vw; background-color: #000000; }
 
 .containerColor { margin-top: 8vw; }
@@ -164,7 +180,9 @@ body {
 .demoEto .crusterSwitch { width: 40%; }
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
 .demoEto .sectionScreen { display: flex;   position: relative; width: 40%;  }
-.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; justify-content: center; width: calc(10vw * 1.777); height: 10vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
+
+.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; flex-direction: column; justify-content: center; width: calc(10vw * 1.777); height: 10vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
+.codeDec { padding: 5px 0; color: #aab; }
 .contentScreen { display: block; width: auto; }
-.demoEto .containerScreen .contentScreen { height: calc(10vw - 20%); }
+.demoEto .containerScreen .contentScreen { height: calc(10vw - 30%); }
 
