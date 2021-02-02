@@ -18,6 +18,7 @@
           statusForDragOperation.stateTo = false;
         }
 
+        swellBounce(elemSwitch);
         fireParticle(elemSwitch);
       });
       elemSwitch.addEventListener('mousemove', (ev) => {
@@ -47,6 +48,8 @@
           else {
             turnOffSwitch(elemTarget);
           }
+
+          swellBounce(elemTarget);
           fireParticle(elemTarget);
         }
       });
@@ -59,6 +62,8 @@
           else {
             turnOffSwitch(elemSwitch);
           }
+
+          swellBounce(elemSwitch);
           fireParticle(elemSwitch);
         }
       });
@@ -103,12 +108,17 @@
     });
   }
 
-  global.fireParticle = function(elemSwitch) {
-    elemSwitch.classList.add('swell');
-    elemSwitch.parentNode.classList.add('particle');
+  global.swellBounce = function(elemCtrl) {
+    elemCtrl.classList.add('swell');
     setTimeout(function() {
-      elemSwitch.parentNode.classList.remove('particle');
-      elemSwitch.classList.remove('swell');
+      elemCtrl.classList.remove('swell');
+    }, 800);
+  } 
+
+  global.fireParticle = function(elemCtrl) {
+    elemCtrl.parentNode.classList.add('particle');
+    setTimeout(function() {
+      elemCtrl.parentNode.classList.remove('particle');
     }, 800);
   }
 

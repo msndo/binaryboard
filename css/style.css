@@ -49,6 +49,7 @@ body {
 .containerSwitch .contentSwitch::after { content: ''; display: block; padding-top: 135.6%; background: url(../img/switch_denki_dentou_off.png); background-size: 100% auto; }
 .containerSwitch .contentSwitch.on::after { background-image: url(../img/switch_denki_dentou_on.png); }
 
+.indicationDigit { display: block; text-align: center; color: #bbb;padding: 3px 0; }
 .demoAddition { width: 33%; margin: auto; }
 .demoAddition .codeHex { display: none; }
 .demoAddition .codeHex + .seriesSwitch { margin-top: 0; }
@@ -60,9 +61,8 @@ body {
 
 .result .contentSwitch { opacity: .6; pointer-events: none; }
 
-
 .containerSignCalc { margin-top: -4.8vw; display: flex; align-items: flex-start; padding: .5vw 0 1.5vw; border-bottom: 3px solid #666; }
-.containerSignCalc .contentSignCalc { display: block; padding: .7vw 1vw 1vw; font-size: 2vw; border: .2vw solid #bbc; border-radius: 8%; line-height: 1; }
+.containerSignCalc .contentSignCalc { display: block; padding: .7vw 1vw 1vw; font-size: 2vw; border: .2vw solid #bbc; border-radius: 20%; line-height: 1; }
 .contentSignCalc:hover { opacity: .5; }
 
 .contentPainted { width: 30vw; height: 10vw; background-color: #000000; }
@@ -74,6 +74,7 @@ body {
 .containerIncDec { display: flex; margin: 10px 0 0; padding: 0 3px; width: auto; justify-content: space-between; }
 .containerIncDec .controlIncDec { display: block; width: 1.2vw; padding: .1vw .7vw .2vw; border: 1px solid #A9B2BB; border-radius: 17%; text-align: center; line-height: 1; font-size: 1.58vw; color: #A9B2BB; transition: background-color .8s cubic-bezier(0.25, 1, 0.5, 1); }
 .containerIncDec .controlIncDec:hover { opacity: .5; }
+
 
 /* 'Openworld Switchboard' */
 .twoBytesPerRow { display: flex; flex-wrap: wrap; }
@@ -91,37 +92,12 @@ body {
 
 .particle { position: relative; }
 .particle::before,
-.particle::after {
-	position: absolute;
-	left: 35%; top: 21%;
-	content: '';
-	display: block;
-	width: 25px;
-	height: 25px;
-	background-position: 0 0;
-	background-size: 100%;
+.particle::after { position: absolute; left: 35%; top: 21%; content: ''; display: block; width: 25px; height: 25px; background-position: 0 0; background-size: 100%; opacity: .8;  animation: cubic-bezier(0.87, 0, 0.13, 1); }
+.particle::before { width: 15px; height: 15px; background-image: url(../img/small_star7_yellow.png);  animation: particleLeftward .8s; }
+.particle::after { background-image: url(../img/small_star7_yellow.png); animation: particleRightward .9s; }
 
-	opacity: .8;
-
-  animation: cubic-bezier(0.87, 0, 0.13, 1);
-}
-.particle::before {
-	width: 15px;
-	height: 15px;
-	background-image: url(../img/small_star7_yellow.png);
-  animation: particleLeftward .8s;
-}
-.particle::after {
-	background-image: url(../img/small_star7_yellow.png);
-  animation: particleRightward .9s;
-}
-
-.particle:nth-of-type(4n)::before {
-  animation: particleLeftwardAccent .9s;
-}
-.particle:nth-of-type(3n)::after {
-  animation: particleRightwardAccent .9s;
-}
+.particle:nth-of-type(4n)::before { animation: particleLeftwardAccent .9s; }
+.particle:nth-of-type(3n)::after { animation: particleRightwardAccent .9s; }
 
 @keyframes particleLeftward {
 	70% {

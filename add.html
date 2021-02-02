@@ -57,11 +57,11 @@
 <div class="componentSwitchHex">
 <span class="codeHex">0</span>
 <ul class="seriesSwitch">
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">16</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">8</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">4</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">2</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">1</span></li>
 </ul>
 </div>
 <!-- /containerBitWithIncDec --></div>
@@ -74,8 +74,13 @@
 <script src="js/script.js"></script>
 
 <script>
-(function() {
+;(function() {
+
 document.addEventListener('DOMContentLoaded', () => {
+  const settings = {
+    waitBitTransition: 100,
+    classnameTurnedOn: 'on'
+  };
   const seriesBitResult = Array.from(document.querySelectorAll('.result'));
   const signPlus = document.querySelector('.signPlus');
   const seriesValue = Array.from(document.querySelectorAll('.codeHex'));
@@ -85,16 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const bunchOfBitAdd = Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
   const bunchOfBitResult = Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
 
-
-
   signPlus.addEventListener('click', (ev) => {
+    swellBounce(signPlus);
     fireParticle(signPlus);
 
     bunchOfBitResult.forEach((bitResult) => {
-      bitResult.classList.remove('on');
-    })
+      bitResult.classList.remove(settings.classnameTurnedOn);
+    });
 
-/*/
+    /*/
+    // +++++++++++++++++++++++++++++++ JSの10進数計算を利用
     const valAdded = parseInt('0x' + seriesValue[0].innerText, 16);
     const valAdd = parseInt('0x' + seriesValue[1].innerText, 16);
 
@@ -102,17 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const seriesResultBinary = ('00000' + valTotal.toString(2)).slice(-5).split('');
 
     seriesResultBinary.forEach((resultBinary, ix) => {
-      bunchOfBitResult[ix].classList.remove('on');
+      bunchOfBitResult[ix].classList.remove(settings.classnameTurnedOn);
 
       if(resultBinary === '1') {
-        bunchOfBitResult[ix].classList.add('on');
+        bunchOfBitResult[ix].classList.add(settings.classnameTurnedOn);
       }
       else {
-        bunchOfBitResult[ix].classList.remove('on');
+        bunchOfBitResult[ix].classList.remove(settings.classnameTurnedOn);
       }
     })
-/*/
+    /*/
 
+    // +++++++++++++++++++++++++++++++ ビット演算を展開
     // push, popは使わずインデックス参照でやる
     const ixLowerEndCalculated = bunchOfBitAdded.length - 1;
     let seriesIsCarryingUp = []; // [true, true ...]
@@ -120,38 +126,57 @@ document.addEventListener('DOMContentLoaded', () => {
     let ixBitResult, digitAdded, digitAdd, digitCarry, xorAddedAdd;
 
     for(let ix = ixLowerEndCalculated; ix >= 0; ix --) {
-      ixBitResult = ix + 1;
+      setTimeout(() => { // setTimeout コマ送り動作
+        ixBitResult = ix + 1;
 
-      digitAdded = bunchOfBitAdded[ix].classList.contains('on');
-      digitAdd = bunchOfBitAdd[ix].classList.contains('on');
-      digitCarry = bunchOfBitResult[ixBitResult].classList.contains('on');
+        digitAdded = bunchOfBitAdded[ix].classList.contains(settings.classnameTurnedOn);
+        digitAdd = bunchOfBitAdd[ix].classList.contains(settings.classnameTurnedOn);
+        digitCarry = bunchOfBitResult[ixBitResult].classList.contains(settings.classnameTurnedOn);
 
-      // 対象二項のXOR判定
-      xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
-      // 繰り上げが伝達されている場合は反転
-      resultBitCurrent = (xorAddedAdd ^ digitCarry) ? true : false;
+        // 対象二項のXOR判定
+        xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
+        // 繰り上げが伝達されている場合は反転
+        resultBitCurrent = (xorAddedAdd ^ digitCarry) ? true : false;
 
-      // 当該桁の結果描画
-      if(resultBitCurrent) {
-        bunchOfBitResult[ixBitResult].classList.add('on');
-      }
-      else {
-        bunchOfBitResult[ixBitResult].classList.remove('on');
-      }
+        // 当該桁の結果描画
+        if(resultBitCurrent) {
+          bunchOfBitResult[ixBitResult].classList.add(settings.classnameTurnedOn);
+        }
+        else {
+          bunchOfBitResult[ixBitResult].classList.remove(settings.classnameTurnedOn);
+        }
 
-      // 繰り上げを一位上の桁にストア（一時的に描画）
-      if(((digitAdded && !digitAdd) || (!digitAdded && digitAdd)) && digitCarry) {
-        bunchOfBitResult[ixBitResult -1].classList.add('on');
-      }
-      if((digitAdded && digitAdd)) {
-        bunchOfBitResult[ixBitResult -1].classList.add('on');
-      }
+        swellBounce(bunchOfBitResult[ixBitResult]);
+        fireParticle(bunchOfBitResult[ixBitResult]);
+
+        // 繰り上げを一位上の桁にストア（一時的に描画）
+        if(((digitAdded && !digitAdd) || (!digitAdded && digitAdd)) && digitCarry) {
+          bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
+
+          // 最上位に繰り上がるときはパーティクルを発生
+          if(ixBitResult -1 === 0) {
+            setTimeout(() => {
+              swellBounce(bunchOfBitResult[ixBitResult - 1]);
+              fireParticle(bunchOfBitResult[ixBitResult - 1]);
+            }, settings.waitBitTransition);
+          }
+        }
+        if((digitAdded && digitAdd)) {
+          bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
+
+          if(ixBitResult -1 === 0) {
+            setTimeout(() => {
+              swellBounce(bunchOfBitResult[ixBitResult - 1]);
+              fireParticle(bunchOfBitResult[ixBitResult - 1]);
+            }, settings.waitBitTransition);
+          }
+        }
+      }, settings.waitBitTransition * ((bunchOfBitResult.length - 1) - (ix + 1)));
     }
   });
 });
+
 })();
-
-
 </script>
 
 </body>
