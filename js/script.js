@@ -103,10 +103,12 @@
     });
   }
 
-  function fireParticle(elemSwitch) {
+  global.fireParticle = function(elemSwitch) {
+    elemSwitch.classList.add('swell');
     elemSwitch.parentNode.classList.add('particle');
     setTimeout(function() {
       elemSwitch.parentNode.classList.remove('particle');
+      elemSwitch.classList.remove('swell');
     }, 800);
   }
 

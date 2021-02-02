@@ -50,7 +50,7 @@
 <!-- /containerBitWithIncDec --></div>
 <!-- /crusterSwitch --> </div>
 
-<div class="containerSignCalc"><a class="contentSignCalc signPlus" href="javascript:void(0);">+</a></div>
+<div class="containerSignCalc"><span class="containerParticle"><a class="contentSignCalc signPlus" href="javascript:void(0);">+</a></span></div>
 
 <div class="crusterSwitch result">
 <div class="containerBitWithIncDec">
@@ -88,6 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   signPlus.addEventListener('click', (ev) => {
+    fireParticle(signPlus);
+
+    bunchOfBitResult.forEach((bitResult) => {
+      bitResult.classList.remove('on');
+    })
+
+/*/
     const valAdded = parseInt('0x' + seriesValue[0].innerText, 16);
     const valAdd = parseInt('0x' + seriesValue[1].innerText, 16);
 
@@ -119,9 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
       digitAdd = bunchOfBitAdd[ix].classList.contains('on');
       digitCarry = bunchOfBitResult[ixBitResult].classList.contains('on');
 
+      // 対象二項のXOR判定
       xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
-      resultBitCurrent = (xorAddedAdd || digitCarry) ? true : false;
+      // 繰り上げが伝達されている場合は反転
+      resultBitCurrent = (xorAddedAdd ^ digitCarry) ? true : false;
 
+      // 当該桁の結果描画
       if(resultBitCurrent) {
         bunchOfBitResult[ixBitResult].classList.add('on');
       }
@@ -129,13 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
         bunchOfBitResult[ixBitResult].classList.remove('on');
       }
 
-      // trueビット + trueビット = false と 繰り上げ
-      if((digitAdded && digitAdd) || (resultBitCurrent) ) {
-        bunchOfBitResult[ixBitResult].classList.remove('on');
-        bunchOfBitResult[ixBitResult - 1].classList.add('on');
+      // 繰り上げを一位上の桁にストア（一時的に描画）
+      if(((digitAdded && !digitAdd) || (!digitAdded && digitAdd)) && digitCarry) {
+        bunchOfBitResult[ixBitResult -1].classList.add('on');
+      }
+      if((digitAdded && digitAdd)) {
+        bunchOfBitResult[ixBitResult -1].classList.add('on');
       }
     }
-/*/
   });
 });
 })();
