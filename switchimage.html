@@ -8,6 +8,12 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+
+<style>
+.componentSwitchHex .codeHex,
+.codeDec { display: none; }
+.demoEto { align-items: center; }
+</style>
 </head>
 
 <body>
@@ -22,18 +28,6 @@
 
 <img class="preload imgEtoSrc" src="img/eto_0000_ne.png" alt="子">
 <img class="preload imgEtoSrc" src="img/eto_0001_ushi.png" alt="丑">
-<img class="preload imgEtoSrc" src="img/eto_0010_tora.png" alt="寅">
-<img class="preload imgEtoSrc" src="img/eto_0011_usagi.png" alt="卯">
-<img class="preload imgEtoSrc" src="img/eto_0100_tatu.png" alt="辰">
-<img class="preload imgEtoSrc" src="img/eto_0101_mi.png" alt="巳">
-<img class="preload imgEtoSrc" src="img/eto_0111_uma.png" alt="午">
-<img class="preload imgEtoSrc" src="img/eto_1000_hitsuji.png" alt="未">
-<img class="preload imgEtoSrc" src="img/eto_1001_saru.png" alt="申">
-<img class="preload imgEtoSrc" src="img/eto_1010_tori.png" alt="酉">
-<img class="preload imgEtoSrc" src="img/eto_1011_inu.png" alt="戌">
-<img class="preload imgEtoSrc" src="img/eto_1100_yi.png" alt="亥">
-<img class="preload imgEtoSrc" src="img/eto_1101_neko.png" alt="ねこ">
-<img class="preload imgEtoSrc" src="img/eto_err.png" alt="エラー">
 
 <div class="demoEto">
 <div class="crusterSwitch">
@@ -41,31 +35,20 @@
 <div class="containerBitWithIncDec">
 <div class="componentSwitchHex">
 <span class="codeHex">0</span>
-<ul class="seriesSwitch">
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<ul class="seriesSwitch" style="align-items: center; justify-content: center;">
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 </ul>
-
-<div class="containerIncDec">
-<a href="javascript:void(0);" class="controlIncDec controlDec">-</a>
-<a href="javascript:void(0);" class="controlIncDec controlInc">+</a>
-</div>
 </div>
 <!-- /containerBitWithIncDec --></div>
 <!-- /crusterSwitch --> </div>
 
 <div class="sectionScreen">
 <p class="containerScreen">
-<span class="containerCodeDec"><span class="codeDec">0</span><span class="trailerCodeDec">（0始まり）</span></span>
+<span class="containerCodeDec"><span class="codeDec">0</span></span>
 <img class="contentScreen" src="img/eto_0000_ne.png" alt="子">
 </p>
 </div>
-
 <!-- /demoEto --> </div>
-
-
 <!-- /appdemoBinarySwitch --></div>
 
 <script src="js/script.js"></script>

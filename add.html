@@ -26,10 +26,14 @@
 <div class="componentSwitchHex">
 <span class="codeHex">0</span>
 <ul class="seriesSwitch">
-<li class="containerSwitch"></a><span class="indicationDigit">8</span><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"></a><span class="indicationDigit">4</span><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"></a><span class="indicationDigit">2</span><a class="contentSwitch" href="javascript:void(0);"></a></li>
-<li class="containerSwitch"></a><span class="indicationDigit">1</span><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">128</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">64</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">32</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">16</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">8</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">4</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">2</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"></a><span class="indicationDigit">1</span><a class="contentSwitch on" href="javascript:void(0);"></a></li>
 </ul>
 </div>
 <!-- /containerBitWithIncDec --></div>
@@ -45,6 +49,10 @@
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch on" href="javascript:void(0);"></a></li>
 </ul>
 </div>
 <!-- /containerBitWithIncDec --></div>
@@ -57,6 +65,10 @@
 <div class="componentSwitchHex">
 <span class="codeHex">0</span>
 <ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">256</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">128</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">64</span></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">32</span></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">16</span></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">8</span></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationDigit">4</span></li>
@@ -146,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
           bunchOfBitResult[ixBitResult].classList.remove(settings.classnameTurnedOn);
         }
 
-        swellBounce(bunchOfBitResult[ixBitResult]);
         fireParticle(bunchOfBitResult[ixBitResult]);
 
         // 繰り上げを一位上の桁にストア（一時的に描画）
@@ -156,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
           // 最上位に繰り上がるときはパーティクルを発生
           if(ixBitResult -1 === 0) {
             setTimeout(() => {
-              swellBounce(bunchOfBitResult[ixBitResult - 1]);
               fireParticle(bunchOfBitResult[ixBitResult - 1]);
             }, settings.waitBitTransition);
           }
@@ -166,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if(ixBitResult -1 === 0) {
             setTimeout(() => {
-              swellBounce(bunchOfBitResult[ixBitResult - 1]);
               fireParticle(bunchOfBitResult[ixBitResult - 1]);
             }, settings.waitBitTransition);
           }
