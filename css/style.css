@@ -19,6 +19,10 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .titlePage { font-size: 4.5vw; }
 .tagline { padding: 1.5vw .5vw; font-size: 2vw }
 
+.navGlobal { display: flex; padding-bottom: 50px; }
+.navGlobal li { margin-left: 10px; }
+.navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; }
+
 .demoBinarySwitch { padding: 3vw 6.5vw; }
 
 .crusterSwitch { display: flex; align-items: flex-start; justify-content: space-between; }
@@ -177,11 +181,11 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
 .demoEto .sectionScreen { display: flex;   position: relative; width: 40%;  }
 
-.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; flex-direction: column; justify-content: center; width: calc(10vw * 1.777); height: 10vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
+.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; flex-direction: column; justify-content: center; width: calc(13vw * 1.5); height: 13vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
 .containerCodeDec { display: flex; align-items: center; }
 .codeDec { padding: 5px 0; color: #aab; font-size: 1.5vw; }
 .codeDec + .trailerCodeDec { font-size: .8vw; color: #aab; }
 .contentScreen { display: block; width: auto; }
-.demoEto .containerScreen .contentScreen { height: calc(10vw - 30%); }
+.demoEto .containerScreen .contentScreen { height: calc(8vw - 30%); }
 
 
