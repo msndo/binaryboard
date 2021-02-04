@@ -46,6 +46,8 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .seriesSwitch[data-label] { outline: 1px solid #b33; background: #feb; }
 .seriesSwitch[data-label]:first-of-type::before { outline-width: 1px 0 1px 1px; }
 .seriesSwitch[data-label="デッドスペース"] { outline: 1px solid #aaa; background: #ccc; }
+.seriesSwitch[data-task="add"] { outline: 1px solid #26a; background: #cdf; }
+
 
 .containerSwitch { width: 25%; }
 
