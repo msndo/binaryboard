@@ -133,8 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // +++++++++++++++++++++++++++++++ ビット演算を展開
     // push, popは使わずインデックス参照でやる
     const ixLowerEndCalculated = bunchOfBitAdded.length - 1;
-    let seriesIsCarryingUp = []; // [true, true ...]
-  
+
     let ixBitResult, digitAdded, digitAdd, digitCarry, xorAddedAdd;
 
     for(let ix = ixLowerEndCalculated; ix >= 0; ix --) {

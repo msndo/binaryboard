@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head>
+<meta charset="utf-8">
+<title>メモリ割当</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+</head>
+
+<body>
+<div class="appDemoBinaryOpenworld">
+<header class="containerTitlePage">
+<h1 class="titlePage">メモリ割当</h1>
+<p class="tagline">Momory Allocation</p>
+</header>
+
+<img class="preload" src="img/switch_denki_dentou_on.png" alt="">
+<img class="preload" src="img/small_star7_yellow.png" alt="">
+
+
+<div class="demoBinarySwitch twoBytesPerRow">
+<ul class="seriesSwitch" data-label="カラーコード 上位">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="カラーコード 中位">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="カラーコード 下位">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="デッドスペース">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="足される数">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="足す数">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="足し算 結果 上位（右端1ビットだけ使う）">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch" data-label="足し算 結果 下位">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+
+<!-- /demoBinarySwitch --> </div>
+<!-- /appDemoBinaryOpenworld --> </div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

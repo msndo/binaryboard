@@ -11,9 +11,8 @@ select { -moz-appearance: none; -webkit-appearance: none; appearance: none; bord
 select::-ms-expand { display: none; }
 a { text-decoration: none; color: #aaa; }
 
-body {
-	font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
-}
+body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif; box-sizing: border-box; }
+
 .preload { display: none; }
 
 .containerTitlePage { padding: 4vw 6vw 0; }
@@ -39,8 +38,14 @@ body {
 
 .componentSwitchHex .codeHex { display: block; width: auto; text-align: center; padding: 10px; }
 
-.seriesSwitch { display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
+.seriesSwitch { position: relative; display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
 .codeHex + .seriesSwitch { margin-top: 10px; }
+
+
+.seriesSwitch[data-label]::before { position: absolute; left: 2px; top: 0vw; display: inline-block; content: attr(data-label)""; color: #888; padding: 3px 5px; background: #fff; }
+.seriesSwitch[data-label] { outline: 1px solid #b33; background: #feb; }
+.seriesSwitch[data-label]:first-of-type::before { outline-width: 1px 0 1px 1px; }
+.seriesSwitch[data-label="デッドスペース"] { outline: 1px solid #aaa; background: #ccc; }
 
 .containerSwitch { width: 25%; }
 
@@ -171,4 +176,5 @@ body {
 .codeDec + .trailerCodeDec { font-size: .8vw; color: #aab; }
 .contentScreen { display: block; width: auto; }
 .demoEto .containerScreen .contentScreen { height: calc(10vw - 30%); }
+
 
