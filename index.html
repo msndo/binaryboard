@@ -8,10 +8,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
 </head>
 
-<body>
-<div class="appDemoBinaryOpenworld">
+<body data-barba="wrapper">
+<div class="appDemoBinaryOpenworld" data-barba="container" data-barba-namespace="general">
 <header class="containerTitlePage">
 <h1 class="titlePage">0/1スイッチの見立てボード</h1>
 <p class="tagline">Binary Openworld</p>
@@ -28,11 +32,11 @@
 </nav>
 </header>
 
+
+<main class="demoBinarySwitch twoBytesPerRow" data-barba="container">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
-
-<div class="demoBinarySwitch twoBytesPerRow">
 <ul class="seriesSwitch">
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
@@ -142,12 +146,8 @@
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
 </ul>
-
-
-<!-- /demoBinarySwitch --> </div>
+<!-- /demoBinarySwitch --> </main>
 <!-- /appDemoBinaryOpenworld --> </div>
-
-<script src="js/script.js"></script>
 
 </body>
 </html>

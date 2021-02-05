@@ -9,10 +9,13 @@
 <meta name="description" content="">
 <link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
 </head>
 
-<body>
-<div class="appdemoBinarySwitch">
+<body data-barba="wrapper">
+<div class="appdemoBinarySwitch" data-barba="container" data-barba-namespace="general">
 <header class="containerTitlePage">
 <h1 class="titlePage">絵を割り当てる！（十二支を割り当てる）</h1>
 <p class="tagline">Bind Pictures of Oriental Zodiac with Number-Switch</p>
@@ -29,6 +32,8 @@
 </nav>
 </header>
 
+
+<main class="demoEto">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
@@ -47,7 +52,6 @@
 <img class="preload imgEtoSrc" src="img/eto_1101_neko.png" alt="ねこ">
 <img class="preload imgEtoSrc" src="img/eto_err.png" alt="エラー">
 
-<div class="demoEto">
 <div class="crusterSwitch">
 
 <div class="containerBitWithIncDec">
@@ -75,12 +79,6 @@
 </p>
 </div>
 
-<!-- /demoEto --> </div>
-
-
-<!-- /appdemoBinarySwitch --></div>
-
-<script src="js/script.js"></script>
 
 <script>
 (function() {
@@ -112,9 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 })();
-
-
 </script>
+
+<!-- /demoEto --> </main>
+<!-- /appdemoBinarySwitch --></div>
 
 </body>
 </html>

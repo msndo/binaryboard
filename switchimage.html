@@ -14,10 +14,14 @@
 .codeDec { display: none; }
 .demoEto { align-items: center; }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
 </head>
 
-<body>
-<div class="appdemoBinarySwitch">
+<body data-barba="wrapper">
+<div class="appdemoBinarySwitch" data-barba="container" data-barba-namespace="general">
 <header class="containerTitlePage">
 <h1 class="titlePage">2画像切り替えるだけ</h1>
 <p class="tagline">Switch Pictures of Oriental Zodiac with Of/Off-Switch</p>
@@ -34,13 +38,14 @@
 </nav>
 </header>
 
+
+<main class="demoEto">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
 <img class="preload imgEtoSrc" src="img/eto_0000_ne.png" alt="子">
 <img class="preload imgEtoSrc" src="img/eto_0001_ushi.png" alt="丑">
 
-<div class="demoEto">
 <div class="crusterSwitch">
 
 <div class="containerBitWithIncDec">
@@ -59,44 +64,41 @@
 <img class="contentScreen" src="img/eto_0000_ne.png" alt="子">
 </p>
 </div>
-<!-- /demoEto --> </div>
-<!-- /appdemoBinarySwitch --></div>
-
-<script src="js/script.js"></script>
 
 <script>
-(function() {
-document.addEventListener('DOMContentLoaded', () => {
-  const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
-  const elemCodeHex = document.querySelector('.codeHex');
-  const elemDest = document.querySelector('.contentScreen');
+(function(global) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
+    const elemCodeHex = document.querySelector('.codeHex');
+    const elemDest = document.querySelector('.contentScreen');
 
-  elemCodeHex.addEventListener('changeContent', (ev) => {
-    const hex = elemCodeHex.innerText;
+    elemCodeHex.addEventListener('changeContent', (ev) => {
+      const hex = elemCodeHex.innerText;
 
-    const decSrc = parseInt('0x' + hex, 16);
-    const decDest = (function() {
-      if(decSrc > 12) {
-        return 13;
-      }
-      return decSrc;
-    })();
+      const decSrc = parseInt('0x' + hex, 16);
+      const decDest = (function() {
+        if(decSrc > 12) {
+          return 13;
+        }
+        return decSrc;
+      })();
 
-    let elemImgFrom = seriesImgFrom[decDest];
-    let imgSrc = elemImgFrom.getAttribute('src');
-    let imgAlt = elemImgFrom.getAttribute('alt');
+      let elemImgFrom = seriesImgFrom[decDest];
+      let imgSrc = elemImgFrom.getAttribute('src');
+      let imgAlt = elemImgFrom.getAttribute('alt');
 
-    elemDest.setAttribute('src', imgSrc);
-    elemDest.setAttribute('alt', imgAlt);
+      elemDest.setAttribute('src', imgSrc);
+      elemDest.setAttribute('alt', imgAlt);
 
-    const elemCodeDec = document.querySelector('.codeDec');
-    elemCodeDec.innerText = decSrc;
+      const elemCodeDec = document.querySelector('.codeDec');
+      elemCodeDec.innerText = decSrc;
+    });
   });
-});
-})();
-
-
+})(window);
 </script>
+
+<!-- /demoEto --> </main>
+<!-- /appdemoBinarySwitch --></div>
 
 </body>
 </html>

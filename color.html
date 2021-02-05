@@ -9,10 +9,13 @@
 <meta name="description" content="">
 <link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
 </head>
 
-<body>
-<div class="appdemoBinarySwitch">
+<body data-barba="wrapper">
+<div class="appdemoBinarySwitch" data-barba="container" data-barba-namespace="general">
 <header class="containerTitlePage">
 <h1 class="titlePage">カラーコードと2進数・16進数</h1>
 <p class="tagline">24-bit Color-Code in Binary, Hexadecimal</p>
@@ -29,10 +32,11 @@
 </nav>
 </header>
 
+
+<main class="demoBinarySwitch">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
-<div class="demoBinarySwitch">
 <div class="crusterSwitch">
 
 <div class="containerPrimeColor containerPrimeColorR">
@@ -138,10 +142,9 @@
 <div class="contentPainted"></div>
 </div>
 
-<!-- /demoBinarySwitch --></div>
+<!-- /demoBinarySwitch --></main>
 <!-- /appdemoBinarySwitch --></div>
 
-<script src="js/script.js"></script>
 
 </body>
 </html>

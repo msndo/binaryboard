@@ -8,10 +8,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
 </head>
 
-<body>
-<div class="appDemoBinaryOpenworld">
+<body data-barba="wrapper">
+<div class="appDemoBinaryOpenworld" data-barba="container" data-barba-namespace="general">
 <header class="containerTitlePage">
 <h1 class="titlePage">メモリ割当</h1>
 <p class="tagline">Momory Allocation</p>
@@ -28,11 +32,12 @@
 </nav>
 </header>
 
+
+
+<main class="demoBinarySwitch twoBytesPerRow">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
-
-<div class="demoBinarySwitch twoBytesPerRow">
 <ul class="seriesSwitch" data-label="カラーコード 上位">
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationAddress">0</span></li>
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationAddress">0</span></li>
@@ -144,28 +149,19 @@
 </ul>
 
 
-<!-- /demoBinarySwitch --> </div>
-<!-- /appDemoBinaryOpenworld --> </div>
-
-<script src="js/script.js"></script>
-
 <script>
-(function() {
-document.addEventListener('DOMContentLoaded', () => {
-  const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
-  initIndicationAddress(seriesContentSwitch);
-
-});
-
-function initIndicationAddress(seriesContentSwitch) {
-  seriesContentSwitch.forEach((contentSwitch, ix) => {
-    contentSwitch.innerText = ix;
+;(function(global) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
+    seriesContentSwitch.forEach((contentSwitch, ix) => {
+      contentSwitch.innerText = ix;
+    });
   });
-}
-})();
-
-
+})(window);
 </script>
+
+<!-- /demoBinarySwitch --> </main>
+<!-- /appDemoBinaryOpenworld --> </div>
 
 </body>
 </html>
