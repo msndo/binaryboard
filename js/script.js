@@ -68,7 +68,7 @@
         }
       });
       elemSwitch.addEventListener('mouseleave', (ev) => {
-          ev.preventDefault();
+        ev.preventDefault();
         if(statusForDragOperation.isMouseButtonPressed) {
         }
       });
@@ -78,8 +78,6 @@
 
     if(document.querySelector('.appdemoBinarySwitch')) {
       initBinaryColorCodeUI(seriesElemSwitch);
-
-
     }
   });
 
@@ -128,13 +126,24 @@
         applyColorOnSwicth(elemSwitch);
       });
 
-      elemSwitch.addEventListener('mousemove', (ev) => {
+      elemSwitch.addEventListener('touchmove', (ev) => {
         if(statusForDragOperation.isMouseButtonPressed) {
           ev.preventDefault();
-          applyColorOnSwicth(elemSwitch);
+
+          const infoTouch = ev.touches;
+          const ixLast = infoTouch.length - 1;
+
+          const clientX = infoTouch[ixLast].pageX;
+          const clientY = infoTouch[ixLast].pageY;
+          const elemTarget = document.elementFromPoint(clientX, clientY);
+
+          if(!elemTarget.classList.contains('contentSwitch')) {
+            return;
+          }
+
+          applyColorOnSwicth(elemTarget);
         }
       });
-
       elemSwitch.addEventListener('mouseenter', () => {
         if(statusForDragOperation.isMouseButtonPressed) {
           applyColorOnSwicth(elemSwitch);

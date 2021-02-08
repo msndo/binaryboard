@@ -21,7 +21,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 
 .navGlobal { display: flex; padding-bottom: 50px; }
 .navGlobal li { margin-left: 10px; }
-.navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; }
+.navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; font-size: 1vw; }
 
 .demoBinarySwitch { padding: 3vw 6.5vw; }
 
@@ -66,7 +66,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .indicationDigit { display: block; text-align: center; color: #999;padding: 3px 0; }
 .indicationAddress { display: block; text-align: center; color: #999;padding: 0 0 5px; }
 
-.demoAddition { width: 50%; margin: auto; }
+.demoAddition { width: 50%; margin: auto; padding: 0 0 5vw; }
 .demoAddition .codeHex { display: none; }
 .demoAddition .codeHex + .seriesSwitch { margin-top: 0; }
 .demoAddition .containerBitWithIncDec { width: 100%; margin-left: 7vw; padding: 0 5vw 0 0; }
@@ -93,8 +93,9 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 
 
 /* 'Openworld Switchboard' */
-.twoBytesPerRow { display: flex; flex-wrap: wrap; }
+.twoBytesPerRow { position: relative; display: flex; flex-wrap: wrap; }
 .twoBytesPerRow .seriesSwitch { width: 50%; }
+.twoBytesPerRow .rid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #fff; opacity: .5; filter: blur(4px); z-index: 1; }
 
 .beginShaking {  animation: shaking .17s infinite; transform-origin: center; }
 .shaking { animation: shaking .12s infinite; transform-origin: center;  }
@@ -176,16 +177,36 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 }
 
 
+.sectionScreen { display: flex;  position: relative; width: 40%; align-items: stretch;  }
+.sectionScreen .containerScreen { display: flex; align-items: stretch; width: calc(13vw * 1.5); height: 13vw; padding: 1.05vw 1.1vw 2.3vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; }
+.containerScreen .contentScreen { height: calc(8vw - 13%); }
+.contentScreen { display: block; width: auto; }
+.containerScreen .display { background-color: #fff;  width: 100%;  height: auto; display: flex; align-items: center; flex-direction: column; justify-content: center;  }
+
 .demoEto { display: flex; padding: 4vw 6vw 0; }
 .demoEto .crusterSwitch { width: 40%; }
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
-.demoEto .sectionScreen { display: flex;   position: relative; width: 40%;  }
 
-.demoEto .sectionScreen .containerScreen { display: flex; align-items: center; flex-direction: column; justify-content: center; width: calc(13vw * 1.5); height: 13vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; padding: 10% 5% 15% 5%; }
 .containerCodeDec { display: flex; align-items: center; }
 .codeDec { padding: 5px 0; color: #aab; font-size: 1.5vw; }
 .codeDec + .trailerCodeDec { font-size: .8vw; color: #aab; }
-.contentScreen { display: block; width: auto; }
-.demoEto .containerScreen .contentScreen { height: calc(8vw - 30%); }
 
+.headingConsole { font-weight: bold; font-size: 2.2vw; }
+.containerConsole { display: flex; justify-content: space-between; padding-bottom: 4vw; }
+.seriesCommandBoard { justify-content: space-between; margin: 40px 0 0; width: 100%; }
+.seriesCommandBoard .commandBoard { height: 0; overflow: hidden;}
+.seriesCommandBoard .commandBoard.show { height: auto;; overflow: hidden;}
 
+.seriesModeSelect { margin-top: 15px; }
+.modeSelect { background: #ddd; border: none; cursor: pointer; padding: 5px 10px; }
+.modeSelect:hover { background: #aaa; color: #fff; }
+
+.containerConsole .cmdPallete { margin-top: 1.8vw; width: 25%; padding: 2.5vw 2.8vw 3.8vw; background: #efefef; }
+
+.headingFunction { font-size: 1.8vw; font-weight: bold; }
+.valueConsole { display: block; width: 100%; letter-spacing: 1px; border: 1px solid #bbb; border-radius: 5%; padding: 5px; }
+.valueNumeric { text-align: right; }
+.componentInputKeyValue { margin-top: 15px; }
+.componentInputKeyValue > * { margin-top: 10px; }
+.triggerExecTask { display: block; margin: 20px 0 0; width: 100%; padding: 5px 10px; border: none; background: #ddd; cursor: pointer; }
+.triggerExecTask:hover { background: #aaa; color: #fff; }
