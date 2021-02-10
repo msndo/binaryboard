@@ -19,9 +19,11 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .titlePage { font-size: 4.5vw; }
 .tagline { padding: 1.5vw .5vw; font-size: 2vw }
 
-.navGlobal { display: flex; padding-bottom: 50px; }
+.navGlobal { display: flex; }
 .navGlobal li { margin-left: 10px; }
 .navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; font-size: 1vw; }
+
+.containerTitlePage + * { margin-top: 40px; }
 
 .demoBinarySwitch { padding: 3vw 6.5vw; }
 
@@ -46,6 +48,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .seriesSwitch:nth-of-type(2n) { padding-left:0; }
 .seriesSwitch:nth-of-type(2n + 1) { padding-right:0; }
 
+.twoBytesPerRow.consoleDemo { padding: 30px; }
 .allocDemo .seriesSwitch { padding: 4px; }
 .codeHex + .seriesSwitch { margin-top: 10px; }
 
@@ -67,7 +70,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .indicationDigit { display: block; text-align: center; color: #999;padding: 3px 0; }
 .indicationAddress { display: block; text-align: center; color: #999;padding: 0 0 5px; }
 
-.demoAddition { width: 50%; margin: auto; padding: 0 0 5vw; }
+.demoAddition { width: 50%; margin: 5vw auto 5vw; padding: 0 0 5vw; }
 .demoAddition .codeHex { display: none; }
 .demoAddition .codeHex + .seriesSwitch { margin-top: 0; }
 .demoAddition .containerBitWithIncDec { width: 100%; margin-left: 7vw; padding: 0 5vw 0 0; }
@@ -97,6 +100,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .twoBytesPerRow { position: relative; display: flex; flex-wrap: wrap; }
 .twoBytesPerRow .seriesSwitch { width: 50%; }
 .twoBytesPerRow .rid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #aac; opacity: .4; backdrop-filter: blur(4px); z-index: 1; }
+.twoBytesPerRow.consoleDemo .rid { width: calc(100% - 60px); height: calc(100% - 60px); top: 30px; left: 30px; }
 
 .beginShaking {  animation: shaking .17s infinite; transform-origin: center; }
 .shaking { animation: shaking .12s infinite; transform-origin: center;  }
@@ -184,7 +188,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .contentScreen { display: block; width: auto; }
 .containerScreen .display { background-color: #fff;  width: 100%;  height: auto; display: flex; align-items: center; flex-direction: column; justify-content: center;  }
 
-.demoEto { display: flex; padding: 4vw 6vw 0; }
+.demoEto { display: flex; padding: 4vw 6vw 8vw; }
 .demoEto .crusterSwitch { width: 40%; }
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
 
@@ -192,8 +196,8 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .codeDec { padding: 5px 0; color: #aab; font-size: 2.5vw; }
 .codeDec + .trailerCodeDec { font-size: 1.6vw; color: #aab; }
 
-.headingConsole { font-weight: bold; font-size: 2.2vw; position: sticky; top: 0; z-index: 3; background: #ffffff99; padding: 2vw 0 0; }
-.containerConsole { display: flex; position: sticky; top: 4vw; width: calc(100% + 4vw); background: #ffffff99; z-index: 3; justify-content: space-between; padding: 0 2vw 4vw; margin-left: -2vw; }
+.headingConsole { font-weight: bold; font-size: 2.2vw; position: sticky; top: 0; z-index: 3;  padding: 2vw 0 0; }
+.containerConsole { display: flex; position: sticky; top: 4vw; width: calc(100% + 4vw); z-index: 3; justify-content: space-between; padding: 0 2vw 4vw; margin-left: -2vw; }
 .seriesCommandBoard { justify-content: space-between; margin: 40px 0 0; width: 100%; }
 .seriesCommandBoard .commandBoard { height: 0; overflow: hidden;}
 .seriesCommandBoard .commandBoard.show { height: auto;; overflow: hidden;}
@@ -206,7 +210,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .containerConsole .cmdPallete { margin-top: 1.8vw; width: 25%; padding: 2.5vw 2.8vw 3.8vw; background: #efefef; }
 
 .headingFunction { font-size: 1.8vw; font-weight: bold; }
-.valueConsole { display: block; width: 100%; letter-spacing: 1px; border: 1px solid #bbb; border-radius: 5%; padding: 5px; }
+.valueConsole { display: block; width: 100%; letter-spacing: .3em; border: 1px solid #bbb; border-radius: 5%; padding: 5px; }
 .valueConsole[readonly] { border-color: #fff; cursor: default; }
 .valueNumeric { text-align: right; }
 .componentInputKeyValue { margin-top: 15px; }
