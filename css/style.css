@@ -42,10 +42,11 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 
 .componentSwitchHex .codeHex { display: block; width: auto; text-align: center; padding: 10px; }
 
-.seriesSwitch { position: relative; display: flex; align-items: flex-start; justify-content: space-between; width: 100%; padding: 4px; }
+.seriesSwitch { position: relative; display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
 .seriesSwitch:nth-of-type(2n) { padding-left:0; }
 .seriesSwitch:nth-of-type(2n + 1) { padding-right:0; }
 
+.allocDemo .seriesSwitch { padding: 4px; }
 .codeHex + .seriesSwitch { margin-top: 10px; }
 
 
@@ -95,7 +96,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 /* 'Openworld Switchboard' */
 .twoBytesPerRow { position: relative; display: flex; flex-wrap: wrap; }
 .twoBytesPerRow .seriesSwitch { width: 50%; }
-.twoBytesPerRow .rid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #fff; opacity: .5; filter: blur(4px); z-index: 1; }
+.twoBytesPerRow .rid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #aac; opacity: .4; backdrop-filter: blur(4px); z-index: 1; }
 
 .beginShaking {  animation: shaking .17s infinite; transform-origin: center; }
 .shaking { animation: shaking .12s infinite; transform-origin: center;  }
@@ -178,8 +179,8 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 
 
 .sectionScreen { display: flex;  position: relative; width: 40%; align-items: stretch;  }
-.sectionScreen .containerScreen { display: flex; align-items: stretch; width: calc(13vw * 1.5); height: 13vw; padding: 1.05vw 1.1vw 2.3vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; }
-.containerScreen .contentScreen { height: calc(8vw - 13%); }
+.sectionScreen .containerScreen { display: flex; align-items: stretch; width: calc(20vw * 1.5); height: 20vw; padding: 1.4vw 1.8vw 3.6vw 1.6vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; }
+.containerScreen .contentScreen { height: calc(11vw - 13%); }
 .contentScreen { display: block; width: auto; }
 .containerScreen .display { background-color: #fff;  width: 100%;  height: auto; display: flex; align-items: center; flex-direction: column; justify-content: center;  }
 
@@ -188,23 +189,25 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
 
 .containerCodeDec { display: flex; align-items: center; }
-.codeDec { padding: 5px 0; color: #aab; font-size: 1.5vw; }
-.codeDec + .trailerCodeDec { font-size: .8vw; color: #aab; }
+.codeDec { padding: 5px 0; color: #aab; font-size: 2.5vw; }
+.codeDec + .trailerCodeDec { font-size: 1.6vw; color: #aab; }
 
-.headingConsole { font-weight: bold; font-size: 2.2vw; }
-.containerConsole { display: flex; justify-content: space-between; padding-bottom: 4vw; }
+.headingConsole { font-weight: bold; font-size: 2.2vw; position: sticky; top: 0; z-index: 3; background: #ffffff99; padding: 2vw 0 0; }
+.containerConsole { display: flex; position: sticky; top: 4vw; width: calc(100% + 4vw); background: #ffffff99; z-index: 3; justify-content: space-between; padding: 0 2vw 4vw; margin-left: -2vw; }
 .seriesCommandBoard { justify-content: space-between; margin: 40px 0 0; width: 100%; }
 .seriesCommandBoard .commandBoard { height: 0; overflow: hidden;}
 .seriesCommandBoard .commandBoard.show { height: auto;; overflow: hidden;}
+.containerConsole .sectionScreen { margin-top: 2vw; }
 
-.seriesModeSelect { margin-top: 15px; }
-.modeSelect { background: #ddd; border: none; cursor: pointer; padding: 5px 10px; }
+.seriesModeSelect { margin-top: 15px; display: flex; align-items: flex-start; }
+.modeSelect { background: #ddd; border: none; cursor: pointer; padding: 5px 10px; margin-right: 2vw; }
 .modeSelect:hover { background: #aaa; color: #fff; }
 
 .containerConsole .cmdPallete { margin-top: 1.8vw; width: 25%; padding: 2.5vw 2.8vw 3.8vw; background: #efefef; }
 
 .headingFunction { font-size: 1.8vw; font-weight: bold; }
 .valueConsole { display: block; width: 100%; letter-spacing: 1px; border: 1px solid #bbb; border-radius: 5%; padding: 5px; }
+.valueConsole[readonly] { border-color: #fff; cursor: default; }
 .valueNumeric { text-align: right; }
 .componentInputKeyValue { margin-top: 15px; }
 .componentInputKeyValue > * { margin-top: 10px; }

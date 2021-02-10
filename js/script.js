@@ -18,8 +18,8 @@
           statusForDragOperation.stateTo = false;
         }
 
-        swellBounce(elemSwitch);
-        fireParticle(elemSwitch);
+        screenEffect.swellBounce(elemSwitch);
+        screenEffect.fireParticle(elemSwitch);
       });
       elemSwitch.addEventListener('mousemove', (ev) => {
         if(statusForDragOperation.isMouseButtonPressed) {
@@ -49,8 +49,8 @@
             turnOffSwitch(elemTarget);
           }
 
-          swellBounce(elemTarget);
-          fireParticle(elemTarget);
+          screenEffect.swellBounce(elemTarget);
+          screenEffect.fireParticle(elemTarget);
         }
       });
 
@@ -63,8 +63,8 @@
             turnOffSwitch(elemSwitch);
           }
 
-          swellBounce(elemSwitch);
-          fireParticle(elemSwitch);
+          screenEffect.swellBounce(elemSwitch);
+          screenEffect.fireParticle(elemSwitch);
         }
       });
       elemSwitch.addEventListener('mouseleave', (ev) => {
@@ -106,14 +106,16 @@
     });
   }
 
-  global.swellBounce = function(elemCtrl) {
+  global.screenEffect = {  };
+
+  screenEffect.swellBounce = function(elemCtrl) {
     elemCtrl.classList.add('swell');
     setTimeout(function() {
       elemCtrl.classList.remove('swell');
     }, 800);
   } 
 
-  global.fireParticle = function(elemCtrl) {
+  screenEffect.fireParticle = function(elemCtrl) {
     elemCtrl.parentNode.classList.add('particle');
     setTimeout(function() {
       elemCtrl.parentNode.classList.remove('particle');
@@ -327,5 +329,213 @@
       elemContainerPrimeColor.style.borderBottomColor = '#' + '0000' + codePrimeColor;
     }
   }
+
+
+  // =============================================== Individual Function
+  global.screenIndividual = {  };
+
+  screenIndividual.switchImage = function() {
+    const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
+    const elemCodeHex = document.querySelector('.codeHex');
+    const elemDest = document.querySelector('.contentScreen');
+
+    elemCodeHex.addEventListener('changeContent', (ev) => {
+      const hex = elemCodeHex.innerText;
+
+      const decSrc = parseInt('0x' + hex, 16);
+      const decDest = (function() {
+        if(decSrc > 12) {
+          return 13;
+        }
+        return decSrc;
+      })();
+
+      let elemImgFrom = seriesImgFrom[decDest];
+      let imgSrc = elemImgFrom.getAttribute('src');
+      let imgAlt = elemImgFrom.getAttribute('alt');
+
+      elemDest.setAttribute('src', imgSrc);
+      elemDest.setAttribute('alt', imgAlt);
+
+      const elemCodeDec = document.querySelector('.codeDec');
+      elemCodeDec.innerText = decSrc;
+    });
+  }
+
+  screenIndividual.bindImage = function() {
+    const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
+    const elemCodeHex = document.querySelector('.codeHex');
+    const elemDest = document.querySelector('.contentScreen');
+
+    elemCodeHex.addEventListener('changeContent', (ev) => {
+      const hex = elemCodeHex.innerText;
+
+      const decSrc = parseInt('0x' + hex, 16);
+      const decDest = (function() {
+        if(decSrc > 12) {
+          return 13;
+        }
+        return decSrc;
+      })();
+
+      let elemImgFrom = seriesImgFrom[decDest];
+      let imgSrc = elemImgFrom.getAttribute('src');
+      let imgAlt = elemImgFrom.getAttribute('alt');
+
+      elemDest.setAttribute('src', imgSrc);
+      elemDest.setAttribute('alt', imgAlt);
+
+      const elemCodeDec = document.querySelector('.codeDec');
+      elemCodeDec.innerText = decSrc;
+    });
+  }
+
+  screenIndividual.demoCalcAdd = function() {
+    const settings = {
+      waitBitTransition: 100,
+      classnameTurnedOn: 'on'
+    };
+    const signPlus = document.querySelector('.signPlus');
+
+    const seriesBunchOfBit = Array.from(document.querySelectorAll('.componentSwitchHex'));
+    const bunchOfBitAdded = Array.from(seriesBunchOfBit[0].querySelectorAll('.contentSwitch'));
+    const bunchOfBitAdd = Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
+    const bunchOfBitResult = Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
+
+    signPlus.addEventListener('click', (ev) => {
+      screenEffect.swellBounce(signPlus);
+      screenEffect.fireParticle(signPlus);
+
+      bunchOfBitResult.forEach((bitResult) => {
+        bitResult.classList.remove(settings.classnameTurnedOn);
+      });
+
+      // +++++++++++++++++++++++++++++++ ビット演算を展開
+      // push, popは使わずインデックス参照でやる
+      const ixLowerEndCalculated = bunchOfBitAdded.length - 1;
+
+      let ixBitResult, digitAdded, digitAdd, digitCarry, xorAddedAdd;
+
+      for(let ix = ixLowerEndCalculated; ix >= 0; ix --) {
+        setTimeout(() => { // setTimeout コマ送り動作
+          ixBitResult = ix + 1;
+
+          digitAdded = bunchOfBitAdded[ix].classList.contains(settings.classnameTurnedOn);
+          digitAdd = bunchOfBitAdd[ix].classList.contains(settings.classnameTurnedOn);
+          digitCarry = bunchOfBitResult[ixBitResult].classList.contains(settings.classnameTurnedOn);
+
+          // 対象二項のXOR判定
+          xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
+          // 繰り上げが伝達されている場合は反転
+          resultBitCurrent = (xorAddedAdd ^ digitCarry) ? true : false;
+
+          // 当該桁の結果描画
+          if(resultBitCurrent) {
+            bunchOfBitResult[ixBitResult].classList.add(settings.classnameTurnedOn);
+          }
+          else {
+            bunchOfBitResult[ixBitResult].classList.remove(settings.classnameTurnedOn);
+          }
+
+          screenEffect.fireParticle(bunchOfBitResult[ixBitResult]);
+
+          // 繰り上げを一位上の桁にストア（一時的に描画）
+          if(((digitAdded && !digitAdd) || (!digitAdded && digitAdd)) && digitCarry) {
+            bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
+
+            // 最上位に繰り上がるときはパーティクルを発生
+            if(ixBitResult -1 === 0) {
+              setTimeout(() => {
+                screenEffect.fireParticle(bunchOfBitResult[ixBitResult - 1]);
+              }, settings.waitBitTransition);
+            }
+          }
+          if((digitAdded && digitAdd)) {
+            bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
+
+            if(ixBitResult -1 === 0) {
+              setTimeout(() => {
+                screenEffect.fireParticle(bunchOfBitResult[ixBitResult - 1]);
+              }, settings.waitBitTransition);
+            }
+          }
+        }, settings.waitBitTransition * ((bunchOfBitResult.length - 1) - (ix + 1)));
+      }
+    });  
+  }
+
+  screenIndividual.initConsole = function() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
+      seriesContentSwitch.forEach((contentSwitch, ix) => {
+        contentSwitch.innerText = ix;
+      });
+
+      Array.from(document.querySelectorAll('.modeSelect')).forEach((elemTrigger) => {
+        const nameMode = elemTrigger.getAttribute('data-task');
+        elemTrigger.addEventListener('click', (ev) => {
+          Array.from(document.querySelectorAll('.commandBoard')).forEach((elemDest) => {
+            elemDest.classList.remove('show');
+          });
+
+          const elemDest = document.querySelector('.commandBoard' + '[data-task="__nameMode__"]'.replace('__nameMode__', nameMode));
+          elemDest.classList.add('show');
+        });
+      });
+    });
+  }
+
+  screenIndividual.initPaint = function() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const elemContainer = document.querySelector('.commandBoard[data-task="colorcode"]');
+      const elemInput = elemContainer.querySelector('#valueColorCode');
+      const limitLengthCode = 6;
+
+      elemInput.addEventListener('change', (ev) => {
+        const strCodeSrc = elemInput.value;
+        const seriesCode = strCodeSrc.split('');
+        seriesCode.forEach((code, ix) => {
+          if(!code.match(/[0-9|a-f]/)) {
+            seriesCode[ix] = 'f';
+          }
+        });
+        elemInput.value = seriesCode.join('');
+
+        if(elemInput.value.length < limitLengthCode) {
+          elemInput.value = ('000000' + elemInput.value).slice(0 - limitLengthCode);
+        }
+        if(elemInput.value.length > limitLengthCode) {
+          elemInput.value = elemInput.value.slice(0, limitLengthCode);
+        }
+      });
+
+      const elemTrigger = elemContainer.querySelector('.triggerExecTask');
+      elemTrigger.addEventListener('click', (ev) => {
+        const lengthBit = 24;
+        const wait = 29;
+
+        const colorCodeInBit = ('0'.repeat(lengthBit) + (parseInt(elemInput.value, 16).toString(2))).slice(0 - lengthBit);
+        const seriesBit = colorCodeInBit.split('');
+
+        const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'))
+
+        seriesBit.reverse().forEach((bit, ix) => {
+          setTimeout(() => {
+            const elemSwitch = seriesElemSwitch[(lengthBit - 1) - ix];
+            elemSwitch.classList.remove('on');
+            if(bit === '1') { elemSwitch.classList.add('on'); }
+            screenEffect.fireParticle(elemSwitch);
+
+            if(ix >= seriesBit.length - 1) {
+              (function() {
+                const elemBgDisplay = document.querySelector('.containerScreen .display');
+                elemBgDisplay.style.backgroundColor = '#' + elemInput.value;
+              })();
+            }
+          }, ix * wait);
+        });
+      });
+    });
+  } 
 
 })(window, void(0));

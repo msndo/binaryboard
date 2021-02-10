@@ -34,7 +34,7 @@
 <li><a class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
 <li><a class="contentNavGlobal" href="./add.html">足し算</a></li>
 <li><a class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
-<li><a class="contentNavGlobal" href="./console.html">コンソールができた</a></li>
+<li><a class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
 </ul>
 </nav>
 </header>
@@ -71,31 +71,7 @@
 <script>
 (function(global) {
   document.addEventListener('DOMContentLoaded', () => {
-    const seriesImgFrom = Array.from(document.querySelectorAll('.imgEtoSrc'));
-    const elemCodeHex = document.querySelector('.codeHex');
-    const elemDest = document.querySelector('.contentScreen');
-
-    elemCodeHex.addEventListener('changeContent', (ev) => {
-      const hex = elemCodeHex.innerText;
-
-      const decSrc = parseInt('0x' + hex, 16);
-      const decDest = (function() {
-        if(decSrc > 12) {
-          return 13;
-        }
-        return decSrc;
-      })();
-
-      let elemImgFrom = seriesImgFrom[decDest];
-      let imgSrc = elemImgFrom.getAttribute('src');
-      let imgAlt = elemImgFrom.getAttribute('alt');
-
-      elemDest.setAttribute('src', imgSrc);
-      elemDest.setAttribute('alt', imgAlt);
-
-      const elemCodeDec = document.querySelector('.codeDec');
-      elemCodeDec.innerText = decSrc;
-    });
+    screenIndividual.switchImage();
   });
 })(window);
 </script>

@@ -28,7 +28,7 @@
 <li><a class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
 <li><a class="contentNavGlobal" href="./add.html">足し算</a></li>
 <li><a class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
-<li><a class="contentNavGlobal" href="./console.html">コンソールができた</a></li>
+<li><a class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
 </ul>
 </nav>
 </header>
@@ -97,83 +97,11 @@
 <!-- /crusterSwitch --> </div>
 
 <script>
-;(function() {
+;(function(global) {
   document.addEventListener('DOMContentLoaded', () => {
-    const settings = {
-      waitBitTransition: 100,
-      classnameTurnedOn: 'on'
-    };
-    const seriesBitResult = Array.from(document.querySelectorAll('.result'));
-    const signPlus = document.querySelector('.signPlus');
-    const seriesValue = Array.from(document.querySelectorAll('.codeHex'));
-
-    const seriesBunchOfBit = Array.from(document.querySelectorAll('.componentSwitchHex'));
-    const bunchOfBitAdded = Array.from(seriesBunchOfBit[0].querySelectorAll('.contentSwitch'));
-    const bunchOfBitAdd = Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
-    const bunchOfBitResult = Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
-
-    signPlus.addEventListener('click', (ev) => {
-      swellBounce(signPlus);
-      fireParticle(signPlus);
-
-      bunchOfBitResult.forEach((bitResult) => {
-        bitResult.classList.remove(settings.classnameTurnedOn);
-      });
-
-      // +++++++++++++++++++++++++++++++ ビット演算を展開
-      // push, popは使わずインデックス参照でやる
-      const ixLowerEndCalculated = bunchOfBitAdded.length - 1;
-
-      let ixBitResult, digitAdded, digitAdd, digitCarry, xorAddedAdd;
-
-      for(let ix = ixLowerEndCalculated; ix >= 0; ix --) {
-        setTimeout(() => { // setTimeout コマ送り動作
-          ixBitResult = ix + 1;
-
-          digitAdded = bunchOfBitAdded[ix].classList.contains(settings.classnameTurnedOn);
-          digitAdd = bunchOfBitAdd[ix].classList.contains(settings.classnameTurnedOn);
-          digitCarry = bunchOfBitResult[ixBitResult].classList.contains(settings.classnameTurnedOn);
-
-          // 対象二項のXOR判定
-          xorAddedAdd = (digitAdded ^ digitAdd) ? true : false;
-          // 繰り上げが伝達されている場合は反転
-          resultBitCurrent = (xorAddedAdd ^ digitCarry) ? true : false;
-
-          // 当該桁の結果描画
-          if(resultBitCurrent) {
-            bunchOfBitResult[ixBitResult].classList.add(settings.classnameTurnedOn);
-          }
-          else {
-            bunchOfBitResult[ixBitResult].classList.remove(settings.classnameTurnedOn);
-          }
-
-          fireParticle(bunchOfBitResult[ixBitResult]);
-
-          // 繰り上げを一位上の桁にストア（一時的に描画）
-          if(((digitAdded && !digitAdd) || (!digitAdded && digitAdd)) && digitCarry) {
-            bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
-
-            // 最上位に繰り上がるときはパーティクルを発生
-            if(ixBitResult -1 === 0) {
-              setTimeout(() => {
-                fireParticle(bunchOfBitResult[ixBitResult - 1]);
-              }, settings.waitBitTransition);
-            }
-          }
-          if((digitAdded && digitAdd)) {
-            bunchOfBitResult[ixBitResult -1].classList.add(settings.classnameTurnedOn);
-
-            if(ixBitResult -1 === 0) {
-              setTimeout(() => {
-                fireParticle(bunchOfBitResult[ixBitResult - 1]);
-              }, settings.waitBitTransition);
-            }
-          }
-        }, settings.waitBitTransition * ((bunchOfBitResult.length - 1) - (ix + 1)));
-      }
-    });
+    screenIndividual.demoCalcAdd();
   });
-})();
+})(window);
 </script>
 <!-- /demoAddition --> </main>
 <!-- /appdemoBinarySwitch --></div>

@@ -28,7 +28,7 @@
 <li><a class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
 <li><a class="contentNavGlobal" href="./add.html">足し算</a></li>
 <li><a class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
-<li><a class="contentNavGlobal" href="./console.html">コンソールができた</a></li>
+<li><a class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
 </ul>
 </nav>
 </header>
@@ -94,7 +94,7 @@
 <!-- /containerConsole --></div>
 
 
-<div class="twoBytesPerRow">
+<div class="twoBytesPerRow allocDemo">
 <img class="preload" src="img/switch_denki_dentou_on.png" alt="">
 <img class="preload" src="img/small_star7_yellow.png" alt="">
 
@@ -212,24 +212,7 @@
 
 <script>
 ;(function(global) {
-  document.addEventListener('DOMContentLoaded', () => {
-    const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
-    seriesContentSwitch.forEach((contentSwitch, ix) => {
-      contentSwitch.innerText = ix;
-    });
-
-    Array.from(document.querySelectorAll('.modeSelect')).forEach((elemTrigger) => {
-      const nameMode = elemTrigger.getAttribute('data-task');
-      elemTrigger.addEventListener('click', (ev) => {
-        Array.from(document.querySelectorAll('.commandBoard')).forEach((elemDest) => {
-          elemDest.classList.remove('show');
-        });
-
-        const elemDest = document.querySelector('.commandBoard' + '[data-task="__nameMode__"]'.replace('__nameMode__', nameMode));
-        elemDest.classList.add('show');
-      });
-    });
-  });
+  screenIndividual.initConsole();
 })(window);
 </script>
 
