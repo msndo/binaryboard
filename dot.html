@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head>
+<meta charset="utf-8">
+<title>ドット点灯</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" media="screen, tv, print" href="css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="js/script.js"></script>
+</head>
+
+<body data-barba="wrapper">
+<div class="appDemoBinaryOpenworld" data-barba="container" data-barba-namespace="dottedLow">
+<header class="containerTitlePage">
+<h1 class="titlePage">ドット点灯</h1>
+<p class="tagline">Dotted Picture</p>
+
+<nav class="containerNavGlobal">
+<ul class="navGlobal">
+<li><a data-screenfunction="emptyswitchboard" class="contentNavGlobal" href="./">0/1 スイッチボード</a></li>
+<li><a data-screenfunction="dottedLow" class="contentNavGlobal" href="./dot.html">ドット点灯</a></li>
+<li><a data-screenfunction="switchimage" class="contentNavGlobal" href="./switchimage.html">2画像切り替えるだけ</a></li>
+<li><a data-screenfunction="bindimage" class="contentNavGlobal" href="./bindimage.html">十二支画像を割り当てる</a></li>
+<li><a data-screenfunction="color" class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
+<li><a data-screenfunction="add" class="contentNavGlobal" href="./add.html">足し算</a></li>
+<li><a data-screenfunction="alloc" class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
+<li><a data-screenfunction="console" class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
+</ul>
+</nav>
+</header>
+
+
+<main class="demoBinarySwitch twoBytesPerRow" data-barba="container">
+<img class="preload" src="img/switch_denki_dentou_on.png" alt="">
+<img class="preload" src="img/small_star7_yellow.png" alt="">
+
+
+
+<div class="containerConsole">
+<div class="sectionScreen">
+<p class="containerScreen">
+<span class="display">
+<span class="containerSeriesDot">
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+
+</span>
+</span>
+</p>
+</div>
+<!-- /containerConsole --></div>
+
+
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<ul class="seriesSwitch">
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+<li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a></li>
+</ul>
+
+<!-- /demoBinarySwitch --> </main>
+<!-- /appDemoBinaryOpenworld --> </div>
+
+</body>
+</html>

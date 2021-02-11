@@ -41,6 +41,7 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; font-size: 1vw; }
 
 [data-barba-namespace="emptyswitchboard"] .navGlobal li [data-screenfunction="emptyswitchboard"],
+[data-barba-namespace="dottedLow"] .navGlobal li [data-screenfunction="dottedLow"],
 [data-barba-namespace="switchimage"] .navGlobal li [data-screenfunction="switchimage"],
 [data-barba-namespace="bindimage"] .navGlobal li [data-screenfunction="bindimage"],
 [data-barba-namespace="color"] .navGlobal li [data-screenfunction="color"],
@@ -78,7 +79,6 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .twoBytesPerRow.consoleDemo { padding: 30px; }
 .allocDemo .seriesSwitch { padding: 4px; }
 .codeHex + .seriesSwitch { margin-top: 10px; }
-
 
 .seriesSwitch[data-label]::before { position: absolute; left: 2px; top: 0vw; display: inline-block; content: attr(data-label)""; color: #888; padding: 3px 5px; background: #fff; }
 .seriesSwitch[data-label] { outline: 1px solid #b33; background: #feb; }
@@ -209,20 +209,24 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 }
 
 
+/* モニタ画面モデル */
 .sectionScreen { display: flex;  position: relative; width: 40%; align-items: stretch;  }
 .sectionScreen .containerScreen { display: flex; align-items: stretch; width: calc(20vw * 1.5); height: 20vw; padding: 1.4vw 1.8vw 3.6vw 1.6vw; background: center center no-repeat url(../img/kaden_tv_wide_frame.png); background-size: 100% auto; }
 .containerScreen .contentScreen { height: calc(11vw - 13%); }
 .contentScreen { display: block; width: auto; }
 .containerScreen .display { background-color: #fff;  width: 100%;  height: auto; display: flex; align-items: center; flex-direction: column; justify-content: center;  }
 
+/* 干支画像プロットデモ */
 .demoEto { display: flex; padding: 4vw 6vw 8vw; }
 .demoEto .crusterSwitch { width: 40%; }
 .demoEto .crusterSwitch .containerBitWithIncDec { width: 100%; }
 
+/* 二進数配列 インクリメント・デクリメント */
 .containerCodeDec { display: flex; align-items: center; }
 .codeDec { padding: 5px 0; color: #aab; font-size: 2.5vw; }
 .codeDec + .trailerCodeDec { font-size: 1.6vw; color: #aab; }
 
+/* コンソール */
 .headingConsole { font-weight: bold; font-size: 2.2vw; position: sticky; top: 0; z-index: 3;  padding: 2vw 0 0; }
 .containerConsole { display: flex; position: sticky; top: 4vw; width: calc(100% + 4vw); z-index: 3; justify-content: space-between; padding: 0 2vw 4vw; margin-left: -2vw; }
 .seriesCommandBoard { justify-content: space-between; margin: 40px 0 0; width: 100%; }
@@ -244,3 +248,10 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .componentInputKeyValue > * { margin-top: 10px; }
 .triggerExecTask { display: block; margin: 20px 0 0; width: 100%; padding: 5px 10px; border: none; background: #ddd; cursor: pointer; }
 .triggerExecTask:hover { background: #aaa; color: #fff; }
+
+/* ドット絵 */
+.containerSeriesDot { display: flex; width: 100%; height: 100%; align-items: stretch; flex-wrap: wrap; justify-content: left; }
+.containerSeriesDot .dot { display: block; position: relative; width: 6.25%; height: auto; background: #ccc; overflow: visible; outline: 1px solid #fff; }
+.containerSeriesDot .dot::after { display: block; position: relative; content: ''; padding-top: 100%; }
+.containerSeriesDot .dot.on { background-color: #333; }
+[data-barba-namespace="dottedLow"] .containerConsole { pointer-events: none; }

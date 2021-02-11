@@ -19,7 +19,7 @@
 
             elemMain.classList.add('swipeOut');
 
-            await(_delay(800));
+            await(_delay(700));
             done();
           },
           async enter (data) {
@@ -33,6 +33,15 @@
           beforeEnter (data) {
             setTimeout(() => {
               initScreen();
+            });
+          }
+        },
+        {
+          namespace: 'dottedLow',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+              screenIndividual.initDotPicture();
             });
           }
         },
@@ -745,6 +754,50 @@
         }, ix * wait);
       });
     });
-  } 
+  };
+
+  screenIndividual.initDotPicture = function() {
+    const seriesDot = Array.from(document.querySelectorAll('.containerSeriesDot .dot'));
+    const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
+
+    seriesElemSwitch.forEach((elemSwitch, ix) => {
+      elemSwitch.addEventListener('pointerdown', (ev) => {
+         _movementDrawDot(elemSwitch, ix);
+      });
+
+      elemSwitch.addEventListener('touchmove', (ev) => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          const infoTouch = ev.touches;
+          const ixLast = infoTouch.length - 1;
+
+          const clientX = infoTouch[ixLast].pageX;
+          const clientY = infoTouch[ixLast].pageY;
+          const elemTarget = document.elementFromPoint(clientX, clientY);
+
+          if(!elemTarget.classList.contains('contentSwitch')) {
+            return;
+          }
+
+         _movementDrawDot(elemSwitch, ix);
+        }
+      });
+      elemSwitch.addEventListener('mouseenter', (ev) => {
+        if(statusForDragOperation.isMouseButtonPressed) {
+          _movementDrawDot(elemSwitch, ix);
+        }
+      });
+    });
+
+    function _movementDrawDot(elemSwitch, ix) {
+      const dotTarg = seriesDot[ix];
+
+      if(elemSwitch.classList.contains('on')) {
+        dotTarg.classList.add('on')
+      }
+      else {
+        dotTarg.classList.remove('on');
+      }
+    }
+  };
 
 })(window, void(0));
