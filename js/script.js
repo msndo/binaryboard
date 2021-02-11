@@ -3,6 +3,119 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     buildStatusHolder();
+    // initScreen();
+
+    initScreenTransition();
+  });
+
+  // ============================================== Sub Routines
+  function initScreenTransition() {
+    barba.init({
+      transitions: [
+        {
+          async leave (data) {
+            const done = this.async();
+            const elemMain = data.current.container.querySelector('main');
+
+            const seriesElemSwitch =  Array.from(elemMain.querySelectorAll('.containerSwitch'));
+            seriesElemSwitch.forEach((elemSwitch, ix) => {
+              if(ix > 48) { return; }
+
+              setTimeout(() => {
+                elemSwitch.classList.add('fallOut');
+              }, 60 * ix);
+            })
+
+            const animationLimit = seriesElemSwitch.length >= 36 ? 36 : seriesElemSwitch.length
+            await _delay(50 *animationLimit + 800);
+
+            elemMain.classList.add('swipeOut');
+            await(_delay(800));
+            done();
+          },
+          async enter (data) {
+            data.next.container.querySelector('main').classList.add('swipeIn');
+          }
+        }
+      ],
+    views: [
+        {
+          namespace: 'emptyswitchboard',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+            });
+          }
+        },
+        {
+          namespace: 'switchimage',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+              screenIndividual.switchImage();
+            });
+          }
+        },
+        {
+          namespace: 'bindimage',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+              screenIndividual.bindImage();
+            });
+          }
+        },
+        {
+          namespace: 'color',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+            });
+          }
+        },
+        {
+          namespace: 'add',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+              screenIndividual.demoCalcAdd();
+            });
+          }
+        },
+        {
+          namespace: 'alloc',
+          beforeEnter (data) {
+            setTimeout(() => {
+              initScreen();
+            });
+          }
+        },
+        {
+          namespace: 'console',
+          beforeEnter (data) {
+            setTimeout(() => {
+console.log('GGG')
+              initScreen();
+              screenIndividual.initConsole();
+              screenIndividual.initPaint();
+            }, 300);
+          }
+        },
+      ]
+    });
+
+    function _delay (n) {
+      n = n || 2000;
+      return new Promise((done) => {
+        setTimeout(() => {
+          done();
+        }, n);
+      });
+    }
+  }
+
+
+  function initScreen() {
 
     const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch:not(.result .contentSwitch)'));
 
@@ -79,9 +192,9 @@
     if(document.querySelector('.appdemoBinarySwitch')) {
       initBinaryColorCodeUI(seriesElemSwitch);
     }
-  });
+  }
 
-  // ============================================== Sub Routines
+
   function bindActionIncDec() {
     const seriesCtrlIncDec = Array.from(document.querySelectorAll('.controlIncDec'));
     seriesCtrlIncDec.forEach(ctrlIncDec => {
@@ -465,75 +578,71 @@
   }
 
   screenIndividual.initConsole = function() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
-      seriesContentSwitch.forEach((contentSwitch, ix) => {
-        contentSwitch.innerText = ix;
-      });
+    const seriesContentSwitch = Array.from(document.querySelectorAll('.indicationAddress'));
+    seriesContentSwitch.forEach((contentSwitch, ix) => {
+      contentSwitch.innerText = ix;
+    });
 
-      Array.from(document.querySelectorAll('.modeSelect')).forEach((elemTrigger) => {
-        const nameMode = elemTrigger.getAttribute('data-task');
-        elemTrigger.addEventListener('click', (ev) => {
-          Array.from(document.querySelectorAll('.commandBoard')).forEach((elemDest) => {
-            elemDest.classList.remove('show');
-          });
-
-          const elemDest = document.querySelector('.commandBoard' + '[data-task="__nameMode__"]'.replace('__nameMode__', nameMode));
-          elemDest.classList.add('show');
+    Array.from(document.querySelectorAll('.modeSelect')).forEach((elemTrigger) => {
+      const nameMode = elemTrigger.getAttribute('data-task');
+      elemTrigger.addEventListener('click', (ev) => {
+        Array.from(document.querySelectorAll('.commandBoard')).forEach((elemDest) => {
+          elemDest.classList.remove('show');
         });
+
+        const elemDest = document.querySelector('.commandBoard' + '[data-task="__nameMode__"]'.replace('__nameMode__', nameMode));
+        elemDest.classList.add('show');
       });
     });
   }
 
   screenIndividual.initPaint = function() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const elemContainer = document.querySelector('.commandBoard[data-task="colorcode"]');
-      const elemInput = elemContainer.querySelector('#valueColorCode');
-      const limitLengthCode = 6;
+    const elemContainer = document.querySelector('.commandBoard[data-task="colorcode"]');
+    const elemInput = elemContainer.querySelector('#valueColorCode');
+    const limitLengthCode = 6;
 
-      elemInput.addEventListener('change', (ev) => {
-        const strCodeSrc = elemInput.value;
-        const seriesCode = strCodeSrc.split('');
-        seriesCode.forEach((code, ix) => {
-          if(!code.match(/[0-9|a-f]/)) {
-            seriesCode[ix] = 'f';
-          }
-        });
-        elemInput.value = seriesCode.join('');
-
-        if(elemInput.value.length < limitLengthCode) {
-          elemInput.value = ('000000' + elemInput.value).slice(0 - limitLengthCode);
-        }
-        if(elemInput.value.length > limitLengthCode) {
-          elemInput.value = elemInput.value.slice(0, limitLengthCode);
+    elemInput.addEventListener('change', (ev) => {
+      const strCodeSrc = elemInput.value;
+      const seriesCode = strCodeSrc.split('');
+      seriesCode.forEach((code, ix) => {
+        if(!code.match(/[0-9|a-f]/)) {
+          seriesCode[ix] = 'f';
         }
       });
+      elemInput.value = seriesCode.join('');
 
-      const elemTrigger = elemContainer.querySelector('.triggerExecTask');
-      elemTrigger.addEventListener('click', (ev) => {
-        const lengthBit = 24;
-        const wait = 29;
+      if(elemInput.value.length < limitLengthCode) {
+        elemInput.value = ('000000' + elemInput.value).slice(0 - limitLengthCode);
+      }
+      if(elemInput.value.length > limitLengthCode) {
+        elemInput.value = elemInput.value.slice(0, limitLengthCode);
+      }
+    });
 
-        const colorCodeInBit = ('0'.repeat(lengthBit) + (parseInt(elemInput.value, 16).toString(2))).slice(0 - lengthBit);
-        const seriesBit = colorCodeInBit.split('');
+    const elemTrigger = elemContainer.querySelector('.triggerExecTask');
+    elemTrigger.addEventListener('click', (ev) => {
+      const lengthBit = 24;
+      const wait = 29;
 
-        const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'))
+      const colorCodeInBit = ('0'.repeat(lengthBit) + (parseInt(elemInput.value, 16).toString(2))).slice(0 - lengthBit);
+      const seriesBit = colorCodeInBit.split('');
 
-        seriesBit.reverse().forEach((bit, ix) => {
-          setTimeout(() => {
-            const elemSwitch = seriesElemSwitch[(lengthBit - 1) - ix];
-            elemSwitch.classList.remove('on');
-            if(bit === '1') { elemSwitch.classList.add('on'); }
-            screenEffect.fireParticle(elemSwitch);
+      const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'))
 
-            if(ix >= seriesBit.length - 1) {
-              (function() {
-                const elemBgDisplay = document.querySelector('.containerScreen .display');
-                elemBgDisplay.style.backgroundColor = '#' + elemInput.value;
-              })();
-            }
-          }, ix * wait);
-        });
+      seriesBit.reverse().forEach((bit, ix) => {
+        setTimeout(() => {
+          const elemSwitch = seriesElemSwitch[(lengthBit - 1) - ix];
+          elemSwitch.classList.remove('on');
+          if(bit === '1') { elemSwitch.classList.add('on'); }
+          screenEffect.fireParticle(elemSwitch);
+
+          if(ix >= seriesBit.length - 1) {
+            (function() {
+              const elemBgDisplay = document.querySelector('.containerScreen .display');
+              elemBgDisplay.style.backgroundColor = '#' + elemInput.value;
+            })();
+          }
+        }, ix * wait);
       });
     });
   } 

@@ -15,6 +15,23 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 * { box-sizing: border-box; }
 .preload { display: none; }
 
+.swipeIn { animation: swipeIn .8s cubic-bezier(0.16, 1, 0.3, 1); }
+.swipeOut { animation: swipeOut .8s cubic-bezier(0.16, 1, 0.3, 1); }
+.fallOut { animation: fallOut .5s cubic-bezier(0.36, 0, 0.66, -0.56) forwards; }
+
+@keyframes swipeIn {
+  0% { opacity: 0; transform: translate(0, -3vw); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+@keyframes swipeOut {
+  0% { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 0; transform: translate(3vw, 0); }
+}
+@keyframes fallOut {
+  0% { transform: translate(0, 0); }
+	100% { transform: translate(0, 120vh)}
+}
+
 .containerTitlePage { padding: 4vw 6vw 0; }
 .titlePage { font-size: 4.5vw; }
 .tagline { padding: 1.5vw .5vw; font-size: 2vw }
@@ -22,6 +39,16 @@ body { font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Y
 .navGlobal { display: flex; }
 .navGlobal li { margin-left: 10px; }
 .navGlobal li .contentNavGlobal { padding: 7px 10px; background: #efefef; color: #888; font-size: 1vw; }
+
+[data-barba-namespace="emptyswitchboard"] .navGlobal li [data-screenfunction="emptyswitchboard"],
+[data-barba-namespace="switchimage"] .navGlobal li [data-screenfunction="switchimage"],
+[data-barba-namespace="bindimage"] .navGlobal li [data-screenfunction="bindimage"],
+[data-barba-namespace="color"] .navGlobal li [data-screenfunction="color"],
+[data-barba-namespace="add"] .navGlobal li [data-screenfunction="add"],
+[data-barba-namespace="alloc"] .navGlobal li [data-screenfunction="alloc"],
+[data-barba-namespace="console"] .navGlobal li [data-screenfunction="console"]
+{ background: #aaa; color: #fff; }
+
 
 .containerTitlePage + * { margin-top: 40px; }
 

@@ -15,20 +15,20 @@
 </head>
 
 <body data-barba="wrapper">
-<div class="appDemoBinaryOpenworld" data-barba="container" data-barba-namespace="general">
+<div class="appDemoBinaryOpenworld" data-barba="container" data-barba-namespace="console">
 <header class="containerTitlePage">
 <h1 class="titlePage">全部コンソール越しで操作</h1>
 <p class="tagline">Operation via Console</p>
 
 <nav class="containerNavGlobal">
 <ul class="navGlobal">
-<li><a class="contentNavGlobal" href="./">0/1 スイッチボード</a></li>
-<li><a class="contentNavGlobal" href="./switchimage.html">2画像切り替えるだけ</a></li>
-<li><a class="contentNavGlobal" href="./bindimage.html">十二支画像を割り当てる</a></li>
-<li><a class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
-<li><a class="contentNavGlobal" href="./add.html">足し算</a></li>
-<li><a class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
-<li><a class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
+<li><a data-screenfunction="emptyswitchboard" class="contentNavGlobal" href="./">0/1 スイッチボード</a></li>
+<li><a data-screenfunction="switchimage" class="contentNavGlobal" href="./switchimage.html">2画像切り替えるだけ</a></li>
+<li><a data-screenfunction="bindimage" class="contentNavGlobal" href="./bindimage.html">十二支画像を割り当てる</a></li>
+<li><a data-screenfunction="color" class="contentNavGlobal" href="./color.html">24ビットカラーコード</a></li>
+<li><a data-screenfunction="add" class="contentNavGlobal" href="./add.html">足し算</a></li>
+<li><a data-screenfunction="alloc" class="contentNavGlobal" href="./alloc.html">メモリ割当</a></li>
+<li><a data-screenfunction="console" class="contentNavGlobal" href="./console.html">コンソール越しで操作</a></li>
 </ul>
 </nav>
 </header>
@@ -63,12 +63,12 @@
 <div class="commandBoard" data-task="add">
 <p class="headingFunction">足し算</p>
 <dl class="componentInputKeyValue">
-<dt><label class="labelForInput" for="valueAdded">左項</label></dt>
+<dt><label class="labelForInput" for="valueAdded">足される</label></dt>
 <dd><input id="valueAdded" type="text" class="valueConsole valueNumeric" value="0"></dd>
 </dl>
 
 <dl class="componentInputKeyValue">
-<dt><label class="labelForInput" for="valueAdd">右項</label></dt>
+<dt><label class="labelForInput" for="valueAdd">足す</label></dt>
 <dd><input id="valueAdd" type="text" class="valueConsole valueNumeric" value="0"></dd>
 </dl>
 
@@ -211,14 +211,6 @@
 <li class="containerSwitch"><a class="contentSwitch" href="javascript:void(0);"></a><span class="indicationAddress">0</span></li>
 </ul>
 
-
-<script>
-;(function(global) {
-  screenIndividual.initConsole();
-  screenIndividual.initPaint();
-
-})(window);
-</script>
 
 <!-- /twoBytesPerRow --> </div>
 <!-- /demoBinarySwitch --> </main>
