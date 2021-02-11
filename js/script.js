@@ -601,6 +601,14 @@
     });
   }
 
+  screenIndividual.toHalfWidth = function(input) {
+    return input.replace(/[！-～]/g,
+      function(input){
+        return String.fromCharCode(input.charCodeAt(0)-0xFEE0);
+      }
+    );
+  };
+
   screenIndividual.calcAddOnConsole = function() {
     const elemContainer = document.querySelector('.commandBoard[data-task="add"]');
 
@@ -608,6 +616,8 @@
     const elemInputValueAdd = elemContainer.querySelector('#valueAdd');
     const elemTriggerExecTask = elemContainer.querySelector('.triggerExecTask');
     const elemValueResult = elemContainer.querySelector('#valueResult');
+
+    const textOnScreen = document.querySelector('.codeDec');
 
     // ワークエリアをスイッチ列上に割当
     const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
@@ -617,10 +627,12 @@
 
 
     elemInputValueAdded.addEventListener('change', function(ev) {
+      ev.target.value = screenIndividual.toHalfWidth(ev.target.value);
       _validate(ev.target);
       _applyValueToSwitch(ev.target, 32);
     });
     elemInputValueAdd.addEventListener('change', function(ev) {
+      ev.target.value = screenIndividual.toHalfWidth(ev.target.value);
       _validate(ev.target);
       _applyValueToSwitch(ev.target, 40);
     });
@@ -628,32 +640,32 @@
     // 加算動作実行
     elemTriggerExecTask.addEventListener('click', (ev) => {
       screenIndividual.movementBitAdd(rangeSwitchAdded, rangeSwitchAdd, rangeSwitchResult)
-
-        .then(() => {
-          const seriesBitResult = [];
-          rangeSwitchResult.forEach((switchResult, ix) => {
-            if(switchResult.classList.contains('on')) { seriesBitResult.push('1'); }
-            else { seriesBitResult.push('0'); }
-          });
-
-          elemValueResult.value =  parseInt(seriesBitResult.join(''), 2).toString(10);
-        })
+        .then(() => { _renderResult(); })
       ;
     });
+
+    function _renderResult() {
+      const seriesBitResult = [];
+      rangeSwitchResult.forEach((switchResult, ix) => {
+        if(switchResult.classList.contains('on')) { seriesBitResult.push('1'); }
+        else { seriesBitResult.push('0'); }
+      });
+
+      const textResult =  parseInt(seriesBitResult.join(''), 2).toString(10);
+      elemValueResult.value = textResult;
+
+      textOnScreen.innerHTML = textResult;
+    }
 
     function _applyValueToSwitch(elemValue, ixOffset) {
       const lengthBit = 8;
       const ixEnd = ixOffset + (lengthBit - 1);
-      const wait = 29;
-      const seriesValueInBit = ('0'.repeat(lengthBit) + (Number(elemValue.value).toString(2))).slice(0 - lengthBit).split('');
 
+      const seriesValueInBit = ('0'.repeat(lengthBit) + (Number(elemValue.value).toString(2))).slice(0 - lengthBit).split('');
 
       const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'))
 
       seriesValueInBit.reverse().forEach((valueInBit, ix) => {
-        setTimeout(() => {
-
-        }, wait)
         const elemSwitch = seriesElemSwitch[ixEnd - ix];
         elemSwitch.classList.remove('on');
 
@@ -689,7 +701,7 @@
     const limitLengthCode = 6;
 
     elemInput.addEventListener('change', (ev) => {
-      const strCodeSrc = elemInput.value;
+      const strCodeSrc = screenIndividual.toHalfWidth(elemInput.value);
       const seriesCode = strCodeSrc.split('');
       seriesCode.forEach((code, ix) => {
         if(!code.match(/[0-9|a-f]/)) {
