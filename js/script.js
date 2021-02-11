@@ -17,19 +17,8 @@
             const done = this.async();
             const elemMain = data.current.container.querySelector('main');
 
-            const seriesElemSwitch =  Array.from(elemMain.querySelectorAll('.containerSwitch'));
-            seriesElemSwitch.forEach((elemSwitch, ix) => {
-              if(ix > 48) { return; }
-
-              setTimeout(() => {
-                elemSwitch.classList.add('fallOut');
-              }, 60 * ix);
-            })
-
-            const animationLimit = seriesElemSwitch.length >= 36 ? 36 : seriesElemSwitch.length
-            await _delay(50 *animationLimit + 800);
-
             elemMain.classList.add('swipeOut');
+
             await(_delay(800));
             done();
           },
@@ -87,6 +76,7 @@
           beforeEnter (data) {
             setTimeout(() => {
               initScreen();
+              screenIndividual.initConsole();
             });
           }
         },
@@ -94,9 +84,9 @@
           namespace: 'console',
           beforeEnter (data) {
             setTimeout(() => {
-console.log('GGG')
               initScreen();
               screenIndividual.initConsole();
+              screenIndividual.calcAddOnConsole();
               screenIndividual.initPaint();
             }, 300);
           }
@@ -503,22 +493,35 @@ console.log('GGG')
     });
   }
 
-  screenIndividual.demoCalcAdd = function() {
+  screenIndividual.demoCalcAdd = function(signPlusSrc) {
+    const signPlus = signPlusSrc ? signPlusSrc : document.querySelector('.signPlus');
+    signPlus.addEventListener('click', (ev) => {
+      screenEffect.swellBounce(signPlus);
+      screenIndividual.movementBitAdd();
+      screenEffect.fireParticle(signPlus);
+    });
+  }
+
+  screenIndividual.movementBitAdd = function(bunchOfBitAddedSrc, bunchOfBitAddSrc, bunchOfBitResultSrc, signPlusSrc) {
     const settings = {
       waitBitTransition: 100,
       classnameTurnedOn: 'on'
     };
-    const signPlus = document.querySelector('.signPlus');
 
     const seriesBunchOfBit = Array.from(document.querySelectorAll('.componentSwitchHex'));
-    const bunchOfBitAdded = Array.from(seriesBunchOfBit[0].querySelectorAll('.contentSwitch'));
-    const bunchOfBitAdd = Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
-    const bunchOfBitResult = Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
+    const bunchOfBitAdded = bunchOfBitAddedSrc ? bunchOfBitAddedSrc : Array.from(seriesBunchOfBit[0].querySelectorAll('.contentSwitch'));
+    const bunchOfBitAdd = bunchOfBitAddSrc ? bunchOfBitAddSrc : Array.from(seriesBunchOfBit[1].querySelectorAll('.contentSwitch'));
+    const bunchOfBitResult = bunchOfBitResultSrc ? bunchOfBitResultSrc : Array.from(seriesBunchOfBit[2].querySelectorAll('.contentSwitch'));
 
-    signPlus.addEventListener('click', (ev) => {
-      screenEffect.swellBounce(signPlus);
-      screenEffect.fireParticle(signPlus);
+    const signPlus = signPlusSrc ? signPlusSrc : document.querySelector('.signPlus');
 
+    const promise = new Promise((resolve, reject) => {
+      _movmentMain(resolve, reject);
+    });
+
+    return promise;
+
+    function _movmentMain(resolve, reject) {
       bunchOfBitResult.forEach((bitResult) => {
         bitResult.classList.remove(settings.classnameTurnedOn);
       });
@@ -572,9 +575,11 @@ console.log('GGG')
               }, settings.waitBitTransition);
             }
           }
+
+          if(ix <= 0) { resolve(); }
         }, settings.waitBitTransition * ((bunchOfBitResult.length - 1) - (ix + 1)));
       }
-    });  
+    }
   }
 
   screenIndividual.initConsole = function() {
@@ -594,6 +599,88 @@ console.log('GGG')
         elemDest.classList.add('show');
       });
     });
+  }
+
+  screenIndividual.calcAddOnConsole = function() {
+    const elemContainer = document.querySelector('.commandBoard[data-task="add"]');
+
+    const elemInputValueAdded = elemContainer.querySelector('#valueAdded');
+    const elemInputValueAdd = elemContainer.querySelector('#valueAdd');
+    const elemTriggerExecTask = elemContainer.querySelector('.triggerExecTask');
+    const elemValueResult = elemContainer.querySelector('#valueResult');
+
+    // ワークエリアをスイッチ列上に割当
+    const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'));
+    const rangeSwitchAdded = seriesElemSwitch.slice(32, 40);
+    const rangeSwitchAdd = seriesElemSwitch.slice(40, 48);
+    const rangeSwitchResult = seriesElemSwitch.slice(55, 64);
+
+
+    elemInputValueAdded.addEventListener('change', function(ev) {
+      _validate(ev.target);
+      _applyValueToSwitch(ev.target, 32);
+    });
+    elemInputValueAdd.addEventListener('change', function(ev) {
+      _validate(ev.target);
+      _applyValueToSwitch(ev.target, 40);
+    });
+
+    // 加算動作実行
+    elemTriggerExecTask.addEventListener('click', (ev) => {
+      screenIndividual.movementBitAdd(rangeSwitchAdded, rangeSwitchAdd, rangeSwitchResult)
+
+        .then(() => {
+          const seriesBitResult = [];
+          rangeSwitchResult.forEach((switchResult, ix) => {
+            if(switchResult.classList.contains('on')) { seriesBitResult.push('1'); }
+            else { seriesBitResult.push('0'); }
+          });
+
+          elemValueResult.value =  parseInt(seriesBitResult.join(''), 2).toString(10);
+        })
+      ;
+    });
+
+    function _applyValueToSwitch(elemValue, ixOffset) {
+      const lengthBit = 8;
+      const ixEnd = ixOffset + (lengthBit - 1);
+      const wait = 29;
+      const seriesValueInBit = ('0'.repeat(lengthBit) + (Number(elemValue.value).toString(2))).slice(0 - lengthBit).split('');
+
+
+      const seriesElemSwitch = Array.from(document.querySelectorAll('.contentSwitch'))
+
+      seriesValueInBit.reverse().forEach((valueInBit, ix) => {
+        setTimeout(() => {
+
+        }, wait)
+        const elemSwitch = seriesElemSwitch[ixEnd - ix];
+        elemSwitch.classList.remove('on');
+
+        if(valueInBit === '1') {
+          elemSwitch.classList.add('on')
+        }
+      });
+    }
+
+    function _validate(elem) {
+      const valueSrc = elem.value;
+
+      const seriesValueChar = valueSrc.split('');
+      seriesValueChar.forEach((valueChar, ix) => {
+        if(!valueChar.match(/[0-9]/)) {
+          seriesValueChar[ix] = 0;
+        }
+      });
+
+      const valueOut = (() => {
+        const value = Number(seriesValueChar.join(''));
+        if(value > 255) { return 255; }
+        return value;
+      })();
+
+      elem.value = valueOut;
+    }
   }
 
   screenIndividual.initPaint = function() {
@@ -620,6 +707,7 @@ console.log('GGG')
     });
 
     const elemTrigger = elemContainer.querySelector('.triggerExecTask');
+
     elemTrigger.addEventListener('click', (ev) => {
       const lengthBit = 24;
       const wait = 29;
